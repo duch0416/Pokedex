@@ -2,18 +2,25 @@ import { useState, useEffect } from "react";
 
 import { getSinglePokemon } from "../../api/actions/getPokemonData";
 
-type PokemonMinType = {
+interface PokemonMinInterface {
   id: number;
   name: string;
   img: string;
   types: Array<string>;
-};
+}
 
 export const usePokemonData = (pokemonName: string) => {
-  const [pokemon, setPokemon] = useState<PokemonMinType>();
+  const [pokemon, setPokemon] = useState<PokemonMinInterface>({
+    id: 1,
+    name: "bulbasaur",
+    img:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    types: ["grass", "poison"],
+  });
 
   const getPokemonData = async () => {
     const data = await getSinglePokemon(pokemonName);
+
     setPokemon({
       id: data.id,
       name: data.name,
@@ -22,7 +29,6 @@ export const usePokemonData = (pokemonName: string) => {
         return data.type.name;
       }),
     });
-    console.log(data);
   };
 
   useEffect(() => {
