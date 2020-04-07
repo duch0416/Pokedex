@@ -5,6 +5,8 @@ import PokemonGenerationCell from "../pokemonGenerations/components/PokemonGener
 import { Device } from "../enums/Device";
 import { startersArray } from "../pokemonGenerations/components/StartersArrray";
 
+
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -50,37 +52,33 @@ const Title = styled.h2`
 export interface HomePageProps {}
 
 const HomePage: React.SFC<HomePageProps> = () => {
+  
   return (
     <Wrapper>
       <Title>Pokedex</Title>
-      {/* <PokemonGenerationCell title="Generation 1" pokemonsNames={["bulbasaur", "charmander", "squirtle"]}/>
-      <PokemonGenerationCell title="Generation 2" pokemonsNames={["chikorita", "cyndaquil", "totodile"]}/>
-      <PokemonGenerationCell title="Generation 3" pokemonsNames={["treecko", "torchic", "mudkip"]}/>
-      <PokemonGenerationCell title="Generation 4" pokemonsNames={["turtwig", "chimchar", "piplup"]}/>
-      <PokemonGenerationCell title="Generation 5" pokemonsNames={[ "snivy", "tepig", "oshawott"]}/>
-      <PokemonGenerationCell title="Generation 6" pokemonsNames={["chespin", "fennekin", "froakie"]}/>
-      <PokemonGenerationCell title="Generation 7" pokemonsNames={["rowlet", "litten", "popplio"]} gen7="gen7"/>
-      <PokemonGenerationCell title="All Pokemons" pokemonsNames={["treecko", "charmander", "froakie"]}/>
-      <PokemonGenerationCell title="Who's That Pokemon?" pokemonsNames={["treecko", "charmander", "froakie"]}/> */}
       {startersArray.map((genStarters: Array<string>, index) => {
         return (
           <PokemonGenerationCell
             title={`Generation ${index + 1}`}
             pokemonsNames={genStarters} 
+            genNum={index + 1}
+            key={index}
           />
         );
       })}
       <PokemonGenerationCell
         title="All Pokemons"
         pokemonsNames={["treecko", "charmander", "froakie"]}
-
+        genNum={8}
       />
       <PokemonGenerationCell
         title="Who's That Pokemon?"
         pokemonsNames={["treecko", "charmander", "froakie"]}
         dark="dark"
+        genNum={9}
       />
     </Wrapper>
+    
   );
 };
 

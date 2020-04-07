@@ -5,7 +5,7 @@ export const getSinglePokemon = async (pokemonName: string) => {
   return pokemon;
 };
 
-export const getPokemonArray = async (interval: {limit: number, offset: number}) => {
+export const getPokemonArray = async (interval: {limit: number, offset: number} | undefined) => {
   const pokemonArray = await pokedex.getPokemonsList(interval);
   return pokemonArray;
 };

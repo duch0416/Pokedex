@@ -1,9 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
+import { RouteComponentProps } from "react-router-dom";
 
 import PokemonList from "../pokemonList/components/PokemonList";
 import PokeballImg from "../common/PokeballImg"
 import {Device} from "../enums/Device"
+
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -65,16 +67,21 @@ const Nav = styled.div`
   height: 15%;
 `
 
-export interface PokemonsPageProps {}
+export interface PokemonsPageProps {
+  generation: string;
+}
 
-const PokemonsPage: React.SFC<PokemonsPageProps> = () => {
+const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) => {
+  const generation = props.match.params.generation
+
   return (
     <Wrapper>
       <Nav/>
       {/* <PokeballImg color="#3039430f"/> */}
       <Title>Pokedex</Title>
-      <PokemonList />
+      <PokemonList generation={generation}/>
     </Wrapper>
+  
   );
 };
 

@@ -1,9 +1,13 @@
 import * as React from "react";
 import styled from "styled-components";
+import {useContext, useReducer} from "react"
 
 import PokeballImg from "../../common/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
-import {  Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
+import { genReducer, initialState} from "../../store/genReducer"
+import {changePokemonGeneration} from "../../store/Actions"
+import {paths} from "../../navigation/paths"
 
 const Background = styled.div`
   background-color: gray;
@@ -11,7 +15,7 @@ const Background = styled.div`
   margin-bottom: 20px;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,6 +28,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   overflow: hidden;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+  text-decoration: none;
   cursor: pointer;
   background-color: white;
   transition: ease 0.2s;
@@ -53,8 +58,8 @@ const PokemonImg = styled.img<{ index: number; title: string, dark: string | und
   filter: ${({dark }) => dark  ? "brightness(0)" : ""};
   right: 5%;
   z-index: 2;
-  width: ${({ title }) => (title == "Generation 7" ? "96px" : "")};
-  height: ${({ title}) => (title == "Generation 7" ? "96px" : "")};
+  width: ${({ title }) => (title === "Generation 7" ? "96px" : "")};
+  height: ${({ title}) => (title === "Generation 7" ? "96px" : "")};
   transform: ${({ index }) =>
     index == 0 ? "translateX(-50%)" : index == 2 ? "translateX(50%)" : ""};
 `;
@@ -70,20 +75,21 @@ const Title = styled.h2`
 export interface PokemonGenerationCellProps {
   title: string;
   pokemonsNames: string[];
+  genNum: number;
   dark?: string | undefined;
 }
 
 const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
   title,
   pokemonsNames,
-  dark
+  dark,
+  genNum
 }) => {
   const { startersImgs } = useStartersImgs(pokemonsNames);
-
+ 
   return (
     <Background>
-      <Wrapper>
-      <Link to="/pokemons"/> 
+      <Wrapper  to={`${paths.POKEMONS}/${genNum}`} > 
         <Title>{title}</Title>
         <PokemonStartersWrapper>
           {startersImgs.map((pokeImg: string, index: number) => {

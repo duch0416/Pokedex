@@ -12,7 +12,7 @@ const Routing: React.SFC<RoutingProps> = () => {
     <Router>
       <Switch>
         <Route exact path={paths.HOME} component={HomePage}></Route>
-        <Route path={paths.POKEMONS} component={PokemonsPage}></Route>
+        <Route path={`${paths.POKEMONS}/:generation`} component={PokemonsPage}></Route>
       </Switch>
     </Router>
   );

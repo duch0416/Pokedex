@@ -6,7 +6,7 @@ import { ColorMap, Colors } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
 
 const Background = styled.div<{ type: any }>`
-    background-color:  ${({ type }) => `${ColorMap.get(type)}61`};
+    background-color:  ${({ type }) => `${ColorMap.get(type)}81`};
     border-radius: 20px;
     margin-bottom: 10px;
     @media ${Device.TABLET} {
@@ -155,7 +155,7 @@ export interface PokemonItemProps {
 
 const PokemonItem: React.SFC<PokemonItemProps> = ({ pokemonName }) => {
   const { pokemon } = usePokemonData(pokemonName);
-
+  
   return (
     <Background type={pokemon.types[0]}>
     <Wrapper type={pokemon.types[0]}>
@@ -177,7 +177,7 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({ pokemonName }) => {
         </PokemonType>
       )}
       <PokemonImage src={pokemon.img} />
-      <PokebalImage src={"images/pokeball.svg"} />
+      <PokebalImage src={"/images/pokeball.svg"} />
     </Wrapper>
     </Background>
   );
