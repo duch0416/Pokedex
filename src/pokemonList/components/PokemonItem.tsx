@@ -5,6 +5,19 @@ import { usePokemonData } from "../actions/usePokemonData";
 import { ColorMap, Colors } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
 
+const Background = styled.div<{ type: any }>`
+    background-color:  ${({ type }) => `${ColorMap.get(type)}61`};
+    border-radius: 20px;
+    margin-bottom: 10px;
+    @media ${Device.TABLET} {
+    margin-bottom: 15px;
+  }
+
+  @media ${Device.TABLET_L} {
+    margin-bottom: 20px;
+  }
+`
+
 const Wrapper = styled.div<{ type: any }>`
   width: 150px;
   height: 111px;
@@ -13,8 +26,12 @@ const Wrapper = styled.div<{ type: any }>`
   position: relative;
   padding: 20px 13px;
   box-sizing: border-box;
-  margin-bottom: 10px;
   overflow: hidden;
+  transition: ease 0.2s;
+  cursor: pointer;
+  &:hover {
+    transform: translatex(3%) translateY(-3%)
+  }
   @media ${Device.MOBILE_M} {
     width: 160px;
     height: 120px;
@@ -29,13 +46,11 @@ const Wrapper = styled.div<{ type: any }>`
   @media ${Device.TABLET} {
     width: 220px;
     height: 160px;
-    margin-bottom: 15px;
   }
 
   @media ${Device.TABLET_L} {
     width: 280px;
     height: 200px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -142,6 +157,7 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({ pokemonName }) => {
   const { pokemon } = usePokemonData(pokemonName);
 
   return (
+    <Background type={pokemon.types[0]}>
     <Wrapper type={pokemon.types[0]}>
       <PokemonId>
         {pokemon.id < 100
@@ -163,6 +179,7 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({ pokemonName }) => {
       <PokemonImage src={pokemon.img} />
       <PokebalImage src={"images/pokeball.svg"} />
     </Wrapper>
+    </Background>
   );
 };
 

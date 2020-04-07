@@ -3,6 +3,13 @@ import styled from "styled-components";
 
 import PokeballImg from "../../common/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
+import {  Link } from "react-router-dom";
+
+const Background = styled.div`
+  background-color: gray;
+  border-radius: 20px;
+  margin-bottom: 20px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,9 +22,14 @@ const Wrapper = styled.div`
   position: relative;
   padding: 5px 13px;
   box-sizing: border-box;
-  margin-bottom: 20px;
   overflow: hidden;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  background-color: white;
+  transition: ease 0.2s;
+  &:hover {
+    transform: translatex(5%) translateY(-5%);
+  }
 `;
 
 const PokeballImgWrapper = styled.div`
@@ -35,13 +47,14 @@ const PokemonStartersWrapper = styled.div`
   width: 100%;
   height: 80%;
 `;
-const PokemonImg = styled.img<{ index: number, gen7: string | undefined }>`
+const PokemonImg = styled.img<{ index: number; title: string, dark: string | undefined}>`
   position: absolute;
   bottom: -20%;
+  filter: ${({dark }) => dark  ? "brightness(0)" : ""};
   right: 5%;
   z-index: 2;
-  width: ${({ gen7 }) => gen7 ? "96px" : ""};
-  height: ${({ gen7 }) => gen7 ? "96px" : ""};
+  width: ${({ title }) => (title == "Generation 7" ? "96px" : "")};
+  height: ${({ title}) => (title == "Generation 7" ? "96px" : "")};
   transform: ${({ index }) =>
     index == 0 ? "translateX(-50%)" : index == 2 ? "translateX(50%)" : ""};
 `;
@@ -57,28 +70,39 @@ const Title = styled.h2`
 export interface PokemonGenerationCellProps {
   title: string;
   pokemonsNames: string[];
-  gen7?: string | undefined;
+  dark?: string | undefined;
 }
 
 const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
   title,
   pokemonsNames,
-  gen7,
+  dark
 }) => {
   const { startersImgs } = useStartersImgs(pokemonsNames);
 
   return (
-    <Wrapper>
-      <Title>{title}</Title>
-      <PokemonStartersWrapper>
-        {startersImgs.map((pokeImg: string, index: number) => {
-          return <PokemonImg key={pokeImg} src={pokeImg} index={index} gen7={gen7} />;
-        })}
-      </PokemonStartersWrapper>
-      <PokeballImgWrapper >
-        <PokeballImg color="#dddddd" />
-      </PokeballImgWrapper>
-    </Wrapper>
+    <Background>
+      <Wrapper>
+      <Link to="/pokemons"/> 
+        <Title>{title}</Title>
+        <PokemonStartersWrapper>
+          {startersImgs.map((pokeImg: string, index: number) => {
+            return (
+              <PokemonImg
+                key={pokeImg}
+                src={pokeImg}
+                index={index}
+                title={title}
+                dark={dark}
+              />
+            );
+          })}
+        </PokemonStartersWrapper>
+        <PokeballImgWrapper>
+          <PokeballImg color="#dddddd" />
+        </PokeballImgWrapper>
+      </Wrapper>
+    </Background>
   );
 };
 
