@@ -15,8 +15,8 @@ const PokemonWrapper = styled.div`
 export interface PokemonListProps {}
 
 const PokemonList: React.SFC<PokemonListProps> = () => {
-  const { pokemonsNameList } = usePokemonList({ limit: 50, offset: 0 });
-  console.log(pokemonsNameList)
+  const { pokemonsNameList } = usePokemonList({ limit: 150, offset: 0 });
+
   return (
     <PokemonWrapper>
 

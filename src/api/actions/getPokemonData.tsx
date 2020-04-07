@@ -9,3 +9,7 @@ export const getPokemonArray = async (interval: {limit: number, offset: number})
   const pokemonArray = await pokedex.getPokemonsList(interval);
   return pokemonArray;
 };
+
+export const test = async () => {
+    console.log(await pokedex.getCharacteristicById(1))
+};

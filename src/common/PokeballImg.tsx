@@ -1,12 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const PokeballImgWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(35%, -23%);
-`;
 
 export interface PokeballImgProps {
   color: string;
@@ -14,11 +8,8 @@ export interface PokeballImgProps {
 
 const PokeballImg: React.SFC<PokeballImgProps> = ({ color }) => {
   return (
-    <PokeballImgWrapper>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="249"
-        height="250"
         fill="none"
         viewBox="0 0 249 250"
       >
@@ -28,7 +19,6 @@ const PokeballImg: React.SFC<PokeballImgProps> = ({ color }) => {
           opacity="0.6"
         />
       </svg>
-    </PokeballImgWrapper>
   );
 };
 

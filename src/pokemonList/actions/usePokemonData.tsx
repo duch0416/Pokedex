@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { getSinglePokemon } from "../../api/actions/getPokemonData";
 
+
 interface PokemonMinInterface {
   id: number;
   name: string;
@@ -21,14 +22,25 @@ export const usePokemonData = (pokemonName: string) => {
   const getPokemonData = async () => {
     const data = await getSinglePokemon(pokemonName);
 
+    let orderedTypesArray
+    const typesNameArray = data.types.map((data: any) => {
+      return data.type.name;
+    })
+    
+    if(data.types[0].slot === 2){
+      orderedTypesArray = typesNameArray.reverse()
+    }else {
+      orderedTypesArray = typesNameArray
+    }
+
+
     setPokemon({
       id: data.id,
       name: data.name,
       img: data.sprites.front_default,
-      types: data.types.map((data: any) => {
-        return data.type.name;
-      }),
+      types: orderedTypesArray
     });
+
   };
 
   useEffect(() => {

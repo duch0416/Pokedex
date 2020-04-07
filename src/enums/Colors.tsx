@@ -3,6 +3,20 @@ export enum Types {
   FIRE = "fire",
   GRASS = "grass",
   WATER = "water",
+  NORMAL = "normal",
+  ICE = "ice",
+  FIGHTING = "fighting",
+  POISON = "poison",
+  GROUND = "ground",
+  FLYING = "flying",
+  PSYCHIC = "psychic",
+  BUG = "bug",
+  ROCK = "rock",
+  GHOST = "ghost",
+  DRAGON = "dragon",
+  DARK = "dark",
+  STEEL = "steel",
+  FAIRY = "fairy"
 }
 
 export enum Colors {
@@ -10,7 +24,21 @@ export enum Colors {
   RED = "	#fb6c6c",
   GREEN = "#48D0B0",
   BLUE = "#77bdfe",
+  GREY= "#B7B7A9",
   BLACK = "#000000",
+  LIGHT_BLUE = "#7DD4FF" ,
+  DARK_RED = "#C26C5E" ,
+  PURPLE = "#ADB0DC",
+  SANDY = "#E2C56F",
+  LIGHT_PURPLE = "#9AA9FF",
+  DARK_PINK = "#FA6EA5",
+  DARK_GREEN = "#B7C544",
+  GRAY_SANDY = "#C5B77D",
+  DARK_PURPLE = "#8181C7",
+  LAVENDER = "#8B7DF0",
+  DARK_BROWN = "#8C6F61",
+  SILVER = "#757575",
+  LIGHT_PINK = "#F1A9F1"
 }
 
 export const ColorMap = new Map([
@@ -18,4 +46,18 @@ export const ColorMap = new Map([
   [Types.FIRE, Colors.RED],
   [Types.GRASS, Colors.GREEN],
   [Types.WATER, Colors.BLUE],
+  [Types.NORMAL, Colors.GREY],
+  [Types.ICE, Colors.LIGHT_BLUE],
+  [Types.FIGHTING, Colors.DARK_RED],
+  [Types.POISON, Colors.PURPLE],
+  [Types.GROUND, Colors.SANDY],
+  [Types.FLYING, Colors.LIGHT_PURPLE],
+  [Types.PSYCHIC, Colors.DARK_PINK],
+  [Types.BUG, Colors.DARK_GREEN],
+  [Types.ROCK, Colors.GRAY_SANDY],
+  [Types.GHOST, Colors.DARK_PURPLE],
+  [Types.DRAGON, Colors.LAVENDER],
+  [Types.DARK, Colors.DARK_BROWN],
+  [Types.STEEL, Colors.SILVER],
+  [Types.FAIRY, Colors.LIGHT_PINK],
 ]);
