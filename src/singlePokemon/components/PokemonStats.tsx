@@ -43,15 +43,15 @@ const PokemonStats: React.SFC<PokemonStatsProps> =  () => {
             </StatsColumn>
             <StatsColumn>
                 {stats.map((item:any) => {
-                    return <PokeStat key={item.stat.base_stat}>{item.base_stat}</PokeStat>
+                    return <PokeStat key={item.stat.name}>{item.base_stat}</PokeStat>
                 })}
             </StatsColumn>
             <StatsColumn>
                 {stats.map((item:any) => {
                     if(item.stat.name == "attack" || item.stat.name == "speed" || item.stat.name == "hp"){
-                        return <StatBar key={item.stat.url} red="red" baseStat={item.base_stat}/>
+                        return <StatBar key={item.stat.name} red="red" baseStat={item.base_stat}/>
                     }else{
-                    return <StatBar key={item.stat.url} baseStat={item.base_stat}/>
+                    return <StatBar key={item.stat.name} baseStat={item.base_stat}/>
                     }
                 })}
             </StatsColumn>

@@ -1,5 +1,3 @@
-import {createContext} from "react"
-
 export enum ActionT {
     SET_POKEMON_STATS = "set_pokemon_stats"
 }

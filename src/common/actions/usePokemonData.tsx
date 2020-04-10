@@ -25,7 +25,6 @@ export const usePokemonData = (pokemonName: string) => {
     const data = await getSinglePokemon(pokemonName);
     dispatch(setPokemonStats(data.stats))
     
-    // console.log(data)
     let orderedTypesArray
     const typesNameArray = data.types.map((data: any) => {
       return data.type.name;
@@ -48,7 +47,13 @@ export const usePokemonData = (pokemonName: string) => {
   };
 
   useEffect(() => {
+    let isCanceled = false;
+    if(!isCanceled){
     getPokemonData();
+    }
+    return () => {
+      isCanceled = true;
+    }
   }, []);
 
   return {

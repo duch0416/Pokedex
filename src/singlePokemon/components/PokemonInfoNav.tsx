@@ -23,7 +23,7 @@ const PokeInfoEl = styled.li<{id: any, isActive: string}>`
 export interface PokemonInfoNavProps {}
 
 const PokemonInfoNav: React.SFC<PokemonInfoNavProps> = () => {
-const infoTexts = ['About', 'Base stats', 'Evolution']
+const infoTexts = ['Base stats', 'Evolution']
 const [isActive, setIsActive] = useState<string>("About");
 
 

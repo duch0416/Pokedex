@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import {useContext, useReducer} from "react"
 
 import PokeballImg from "../../common/layout/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
