@@ -24,7 +24,7 @@ export interface PokemonInfoNavProps {}
 
 const PokemonInfoNav: React.SFC<PokemonInfoNavProps> = () => {
 const infoTexts = ['Base stats', 'Evolution']
-const [isActive, setIsActive] = useState<string>("About");
+const [isActive, setIsActive] = useState<string>("Base stats");
 
 
   return (

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import PokemonInfoNav from "./PokemonInfoNav"
 import PokemonStats from "./PokemonStats"
+import Evolutions from "./Evolutions"
 
 const Wrapper = styled.div`
   position: relative;
@@ -44,7 +45,8 @@ const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
         <PokemonImg src={pokemon.img} />
       </ImgsWrapper>
       <PokemonInfoNav></PokemonInfoNav>
-      <PokemonStats/>
+      {/* <PokemonStats/> */}
+      <Evolutions/>
     </Wrapper>
   );
 };

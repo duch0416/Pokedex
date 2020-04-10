@@ -20,6 +20,8 @@ const StatsColumn = styled.div`
 const PokeStat = styled.p<{name?: string}>`
     color: #303943;
     opacity:${({name}) => name ? "0.6" : "1"};
+    text-transform: capitalize;
+    font-size: 14px;
 `
 
 export interface PokemonStatsProps {
@@ -35,7 +37,7 @@ const PokemonStats: React.SFC<PokemonStatsProps> =  () => {
                 {stats.map((item:any) => {
                     if(item.stat.name == "special-defense" || item.stat.name == "special-attack"){
                         const shortcut = item.stat.name.split('').splice(8,3).join("")
-                        return <PokeStat name="name" key={item.stat.name}>{`Sp. ${shortcut}`}</PokeStat>
+                        return <PokeStat name="name" key={item.stat.name}>{`sp. ${shortcut}`}</PokeStat>
                     }else {
                     return <PokeStat name="name" key={item.stat.name}>{item.stat.name}</PokeStat>
                     }

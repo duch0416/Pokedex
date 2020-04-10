@@ -23,6 +23,7 @@ export const usePokemonData = (pokemonName: string) => {
   
   const getPokemonData = async () => {
     const data = await getSinglePokemon(pokemonName);
+    // console.log(data)
     dispatch(setPokemonStats(data.stats))
     
     let orderedTypesArray

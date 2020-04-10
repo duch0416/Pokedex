@@ -10,3 +10,9 @@ export const getPokemonArray = async (interval: {limit: number, offset: number} 
   return pokemonArray;
 };
 
+export const getEvolutionChain = async (name: string) => {
+  const species = await pokedex.getPokemonSpeciesByName(name)
+  const evolutionChain = await pokedex.resource(species.evolution_chain.url)
+  return evolutionChain
+}
+
