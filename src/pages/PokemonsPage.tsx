@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
 import PokemonList from "../pokemonList/components/PokemonList";
-import PokeballImg from "../common/PokeballImg"
+import PokeballImg from "../common/layout/PokeballImg"
 import {Device} from "../enums/Device"
 
 

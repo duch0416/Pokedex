@@ -1,7 +1,5 @@
 import {createContext} from "react"
-import {initialState} from "./genReducer"
+import {initialState} from "./statsReducer"
 
-export const pokemonGenContext = createContext(initialState)
+export const pokemonStatsContext = createContext(initialState)
 
-export const Provider = pokemonGenContext.Provider
-export const Consumer = pokemonGenContext.Consumer

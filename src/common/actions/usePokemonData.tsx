@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 
 import { getSinglePokemon } from "../../api/actions/getPokemonData";
-
+import {statsReducer, initialState} from "../../store/statsReducer"
+import {setPokemonStats} from "../../store/Actions"
 
 interface PokemonMinInterface {
   id: number;
@@ -11,6 +12,7 @@ interface PokemonMinInterface {
 }
 
 export const usePokemonData = (pokemonName: string) => {
+  const [state, dispatch] = useReducer(statsReducer, initialState)
   const [pokemon, setPokemon] = useState<PokemonMinInterface>({
     id: 1,
     name: "bulbasaur",
@@ -18,10 +20,12 @@ export const usePokemonData = (pokemonName: string) => {
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
     types: ["grass", "poison"],
   });
-
+  
   const getPokemonData = async () => {
     const data = await getSinglePokemon(pokemonName);
-
+    dispatch(setPokemonStats(data.stats))
+    
+    // console.log(data)
     let orderedTypesArray
     const typesNameArray = data.types.map((data: any) => {
       return data.type.name;

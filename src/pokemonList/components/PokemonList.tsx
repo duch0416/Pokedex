@@ -4,9 +4,6 @@ import styled from "styled-components";
 import PokemonItem from "./PokemonItem";
 import "../actions/usePokemonList";
 import { usePokemonList } from "../actions/usePokemonList";
-import { useContext, useReducer } from "react";
-import { genReducer, initialState } from "../../store/genReducer";
-import { pokemonGenContext } from "../../store/store";
 
 const PokemonWrapper = styled.div`
   display: flex;
@@ -26,7 +23,7 @@ const PokemonList: React.SFC<PokemonListProps> = ({generation}) => {
   return (
     <PokemonWrapper>
       {pokemonsNameList.map((pokemonName: string) => {
-        return <PokemonItem key={pokemonName} pokemonName={pokemonName} />;
+        return <PokemonItem key={pokemonName} pokemonName={pokemonName} generation={generation}/>;
       })}
     </PokemonWrapper>
   );

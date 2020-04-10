@@ -2,18 +2,13 @@ import * as React from "react";
 import styled from "styled-components";
 import {useContext, useReducer} from "react"
 
-import PokeballImg from "../../common/PokeballImg";
+import PokeballImg from "../../common/layout/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
 import {  NavLink } from "react-router-dom";
-import { genReducer, initialState} from "../../store/genReducer"
-import {changePokemonGeneration} from "../../store/Actions"
 import {paths} from "../../navigation/paths"
+import CellBgc from "../../common/layout/CellBgc";
 
-const Background = styled.div`
-  background-color: gray;
-  border-radius: 20px;
-  margin-bottom: 20px;
-`;
+
 
 const Wrapper = styled(NavLink)`
   display: flex;
@@ -88,7 +83,7 @@ const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
   const { startersImgs } = useStartersImgs(pokemonsNames);
  
   return (
-    <Background>
+    <CellBgc>
       <Wrapper  to={`${paths.POKEMONS}/${genNum}`} > 
         <Title>{title}</Title>
         <PokemonStartersWrapper>
@@ -108,7 +103,7 @@ const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
           <PokeballImg color="#dddddd" />
         </PokeballImgWrapper>
       </Wrapper>
-    </Background>
+    </CellBgc>
   );
 };
 

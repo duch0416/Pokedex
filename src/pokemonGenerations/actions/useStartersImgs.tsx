@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import {getSinglePokemon, test} from "../../api/actions/getPokemonData"
+import {getSinglePokemon} from "../../api/actions/getPokemonData"
 
 
 

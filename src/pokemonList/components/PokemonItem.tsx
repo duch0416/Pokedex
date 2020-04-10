@@ -1,24 +1,20 @@
 import * as React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import { usePokemonData } from "../actions/usePokemonData";
+import { usePokemonData } from "../../common/actions/usePokemonData";
 import { ColorMap, Colors } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
+import { paths } from "../../navigation/paths";
+import PokemonType from "./PokemonType";
+import PokemonId from "../../common/layout/PokemonId";
+import PokemonName from "../../common/layout/PokemonName";
+import CellBgc from "../../common/layout/CellBgc";
 
-const Background = styled.div<{ type: any }>`
-    background-color:  ${({ type }) => `${ColorMap.get(type)}81`};
-    border-radius: 20px;
-    margin-bottom: 10px;
-    @media ${Device.TABLET} {
-    margin-bottom: 15px;
-  }
 
-  @media ${Device.TABLET_L} {
-    margin-bottom: 20px;
-  }
-`
-
-const Wrapper = styled.div<{ type: any }>`
+const Wrapper = styled(NavLink)<{ type: any }>`
+  display: block;
+  text-decoration: none;
   width: 150px;
   height: 111px;
   background-color: ${({ type }) => ColorMap.get(type)};
@@ -30,7 +26,7 @@ const Wrapper = styled.div<{ type: any }>`
   transition: ease 0.2s;
   cursor: pointer;
   &:hover {
-    transform: translatex(3%) translateY(-3%)
+    transform: translatex(3%) translateY(-3%);
   }
   @media ${Device.MOBILE_M} {
     width: 160px;
@@ -40,8 +36,6 @@ const Wrapper = styled.div<{ type: any }>`
   @media ${Device.MOBILE_L} {
     width: 170px;
     height: 125px;
-    padding-left: 28px;
-    padding-right: 28px;
   }
   @media ${Device.TABLET} {
     width: 220px;
@@ -54,47 +48,6 @@ const Wrapper = styled.div<{ type: any }>`
   }
 `;
 
-const PokemonName = styled.p`
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
-  text-transform: capitalize;
-  @media ${Device.MOBILE_L} {
-    font-size: 16px;
-  }
-  @media ${Device.TABLET} {
-    font-size: 20px;
-  }
-  @media ${Device.TABLET_L} {
-    font-size: 24px;
-  }
-`;
-const PokemonType = styled.div`
-  background-color: #ffffff32;
-  margin-top: 5px;
-  width: min-content;
-  padding: 3px 8px;
-  border-radius: 38px;
-  p {
-    color: white;
-    font-size: 8px;
-    @media ${Device.MOBILE_L} {
-      font-size: 11px;
-    }
-    @media ${Device.TABLET} {
-      font-size: 15px;
-    }
-    @media ${Device.TABLET_L} {
-      font-size: 18px;
-    }
-  }
-  @media ${Device.MOBILE_M} {
-    padding: 4px 12px;
-  }
-  @media ${Device.TABLET_L} {
-    padding: 5px 14px;
-  }
-`;
 const PokebalImage = styled.img`
   width: 80px;
   height: 74px;
@@ -112,21 +65,16 @@ const PokebalImage = styled.img`
   }
 `;
 
-const PokemonId = styled.div`
-  font-size: 14px;
-  color: ${Colors.BLACK + "36"};
-  font-weight: 700;
+const IdContainer = styled.div`
   position: absolute;
   top: 10px;
   right: 15px;
   @media ${Device.TABLET} {
     right: 20px;
-    font-size: 18px;
   }
   @media ${Device.TABLET_L} {
     top: 20px;
     right: 30px;
-    font-size: 20px;
   }
 `;
 
@@ -149,37 +97,37 @@ const PokemonImage = styled.img`
   }
 `;
 
+const tText = styled.p`
+  color: white;
+  font-size: 8px;
+`
 export interface PokemonItemProps {
+  generation: string;
   pokemonName: string;
 }
 
-const PokemonItem: React.SFC<PokemonItemProps> = ({ pokemonName }) => {
+const PokemonItem: React.SFC<PokemonItemProps> = ({
+  pokemonName,
+  generation,
+}) => {
   const { pokemon } = usePokemonData(pokemonName);
-  
-  return (
-    <Background type={pokemon.types[0]}>
-    <Wrapper type={pokemon.types[0]}>
-      <PokemonId>
-        {pokemon.id < 100
-          ? pokemon.id < 10
-            ? `#00${pokemon.id}`
-            : `#0${pokemon.id}`
-          : `#${pokemon.id}`}
-      </PokemonId>
-      <PokemonName>{pokemon.name}</PokemonName>
-      <PokemonType>
-        <p>{pokemon.types[0]}</p>
-      </PokemonType>
 
-      {pokemon.types[1] && (
-        <PokemonType>
-          <p>{pokemon.types[1]}</p>
-        </PokemonType>
-      )}
-      <PokemonImage src={pokemon.img} />
-      <PokebalImage src={"/images/pokeball.svg"} />
-    </Wrapper>
-    </Background>
+  return (
+    <CellBgc type={pokemon.types[0]}>
+      <Wrapper
+        type={pokemon.types[0]}
+        to={`${paths.POKEMONS}/${generation}/${pokemon.name}`}
+      >
+        <IdContainer>
+          <PokemonId id={pokemon.id} />
+        </IdContainer>
+        <PokemonName name={pokemon.name} />
+        <PokemonType type={pokemon.types[0]} />
+        {pokemon.types[1] && <PokemonType type={pokemon.types[1]} />}
+        <PokemonImage src={pokemon.img} />
+        <PokebalImage src={"/images/pokeball.svg"} />
+      </Wrapper>
+    </CellBgc>
   );
 };
 

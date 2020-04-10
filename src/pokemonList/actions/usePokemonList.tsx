@@ -5,6 +5,7 @@ import { getPokemonArray } from "../../api/actions/getPokemonData";
 export const usePokemonList = (generation: string) => {
   const [pokemonsNameList, setPokemonNameList] = useState<Array<string>>([]);
   
+
   const setLimitAndOffset = (generation: string) => {
     let interval
     if(generation === "1"){
@@ -21,14 +22,15 @@ export const usePokemonList = (generation: string) => {
       interval = { limit: 72, offset: 649 }
     }else if(generation === "7"){
       interval = { limit: 81, offset: 721 }
+    }else {
+      interval = { limit: 802, offset: 0 }
     }
     return interval
   }
 
-  // interval: { limit: number; offset: number }
+  
   const getPokemonNameList = async () => {
     const interval = setLimitAndOffset(generation)
-    console.log(interval)
 
     const data = await getPokemonArray(interval);
 
