@@ -2,8 +2,7 @@ import * as React from 'react';
 import {useContext} from 'react';
 import styled from "styled-components"
 
-import {pokemonStatsContext} from "../../store/store"
-import {pokedex} from "../../api/ApiConfig"
+import {pokemonContext} from "../../store/store"
 import StatBar from "./statBar"
 
 const Wrapper = styled.div`
@@ -29,8 +28,8 @@ export interface PokemonStatsProps {
 }
  
 const PokemonStats: React.SFC<PokemonStatsProps> =  () => {
-    const stats = useContext(pokemonStatsContext).stats
-    
+    const stats = useContext(pokemonContext).stats
+   
     return ( 
         <Wrapper>
             <StatsColumn>

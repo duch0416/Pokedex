@@ -8,22 +8,23 @@ export const useEvolutionsImgs = (pokName:string) => {
 
   
   const getEvolutionImg = async () => {
-    console.log(pokName)
-    const data = await getEvolutionChain(pokName);
+    const data = await getEvolutionChain("bulbasaur");
     
     const firstForm = data.chain.species.name;
     const secondForm =  data.chain.evolves_to[0].species.name;
     const thirdForm = data.chain.evolves_to[0].evolves_to[0].species.name;
-
+    
+    
     const evolutions = [firstForm, secondForm, thirdForm]
     setEvolutionsNames(evolutions)
 
-    evolutions.map(async (pokemonName: string) => {
+   const imgs = await Promise.all(evolutions.map(async (pokemonName: string) => {
         const pokemon = await getSinglePokemon(pokemonName)
-        setEvolutionImgs((prevState: any) => {
-            return [...prevState, pokemon.sprites.front_default]
-        })
-    })
+        return   pokemon.sprites.front_default
+    }))
+
+    setEvolutionImgs(imgs)
+    // console.log(imgs)
   };
 
 

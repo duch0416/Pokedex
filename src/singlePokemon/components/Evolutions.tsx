@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import {useContext} from "react"
 
-
+import {pokemonContext} from "../../store/store"
 import { useEvolutionsImgs } from "../actions/useEvolutionImgs";
 import EvolutionFragment from "./EvolutionFragment";
 
@@ -19,11 +19,14 @@ const Title = styled.h3`
 
 
 export interface EvolutionsProps {
-    pokName:string,
+    
 }
 
-const Evolutions: React.SFC<EvolutionsProps> = ({pokName}) => {
-    const { evolutionsImgs, evolutionsNames } = useEvolutionsImgs(pokName);
+const Evolutions: React.SFC<EvolutionsProps> = () => {
+  const evolutionData = useContext(pokemonContext).evolutionData
+  const evolutionsNames = evolutionData.evolutionsNames
+  const evolutionsImgs = evolutionData.imgs
+
   
   return (
     <Wrapper>

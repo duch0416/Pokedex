@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { usePokemonData } from "../../common/actions/usePokemonData";
+import { usePokemonData } from "../../singlePokemon/actions/usePokemonData";
 import { ColorMap, Colors } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
 import { paths } from "../../navigation/paths";
@@ -112,8 +112,6 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({
   generation,
   pokemon
 }) => {
-  // const { pokemon } = usePokemonData(pokemonName);
-  console.log(pokemon)
   
   return (
     <CellBgc type={pokemon.types[0]}>

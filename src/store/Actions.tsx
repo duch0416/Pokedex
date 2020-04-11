@@ -1,11 +1,14 @@
 export enum ActionT {
-    SET_POKEMON_STATS = "set_pokemon_stats"
+    SET_POKEMON__DATA  = "set_pokemon_data",
 }
 
-export const setPokemonStats = (data: any) => {
+export const setPokemonData = (stats: any, evolutionData:any) => {
     return {
-        type: ActionT.SET_POKEMON_STATS,
-        payload: data,
+        type: ActionT.SET_POKEMON__DATA,
+        stats: stats,
+        evolutionData: evolutionData
     }
 }
+
+
 

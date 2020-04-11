@@ -23,7 +23,6 @@ const PokemonList: React.SFC<PokemonListProps> = ({generation}) => {
   return (
     <PokemonWrapper>
       {pokemons && pokemons.map((pokemon: any) => {
-        console.log(pokemon)
         return <PokemonItem key={pokemon.id} pokemonName={pokemon.name} generation={generation} pokemon={pokemon}/>;
       })}
     </PokemonWrapper>

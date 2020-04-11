@@ -1,12 +1,13 @@
 import * as React from "react";
-import {useReducer, useEffect} from "react";
+import {useReducer, useEffect, useState} from "react";
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
-import { usePokemonData } from "../common/actions/usePokemonData";
+import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
 import { ColorMap, Colors } from "../enums/Colors";
 import BasicPokemonInfo from "../singlePokemon/components/BasicPokemonInfo";
 import DetailPokemonInfo from "../singlePokemon/components/DetailPokemonInfo";
+import {getSinglePok} from "../common/actions/getSinglePok"
 
 
 const Wrapper = styled.div<{ type: any }>`
@@ -30,19 +31,19 @@ export interface SinglePokemonProps {
 const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (
   props
 ) => {
-  const pokeName = props.match.params.name;
-  const { pokemon } = usePokemonData(pokeName, "single");
-
-
+  const pokName = props.match.params.name;
+  const { pokemon } = usePokemonData(pokName);
+  // const [pok, setPokemon] = useState<any>()
+  
   return (
-    <Wrapper type={pokemon.types[0]}>
+    <Wrapper type={pokemon && pokemon.types[0]}>
       <TopSection>
         <Arrow src="/images/arrow.svg" />
         <BasicPokemonInfo pokemon={pokemon} />
       </TopSection>
       <DetailPokemonInfo pokemon={pokemon} />
     </Wrapper>
-  );
+    )
 };
 
 export default SinglePokemon;

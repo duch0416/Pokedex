@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { getPokemonArray } from "../../api/actions/getPokemonData";
-import {getPokemonList} from "./getPokemonList"
+import {getSinglePok} from "../../common/actions/getSinglePok"
 
 
 export const usePokemonList = (generation: string) => {
@@ -37,7 +37,7 @@ export const usePokemonList = (generation: string) => {
     const data = await getPokemonArray(interval);
    
    const poks= await Promise.all(data.results.map(async (pokemon:any) => {
-        const pok = await getPokemonList(pokemon.name);
+        const pok = await getSinglePok(pokemon.name);
         return pok
       }))
       

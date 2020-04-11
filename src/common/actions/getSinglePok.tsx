@@ -4,7 +4,7 @@ import {getSinglePokemon} from "../../api/actions/getPokemonData"
     
 
   
-  export const getPokemonList = async (pokemonName: string) => {
+  export const getSinglePok = async (pokemonName: string) => {
     const data = await getSinglePokemon(pokemonName);
     
     let orderedTypesArray
@@ -21,7 +21,8 @@ import {getSinglePokemon} from "../../api/actions/getPokemonData"
         id: data.id,
         name: data.name,
         img: data.sprites.front_default,
-        types: orderedTypesArray
+        types: orderedTypesArray,
+        stats: data.stats
       }
     
     return pokemon ;
