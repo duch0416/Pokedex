@@ -10,8 +10,9 @@ import { startersArray } from "../pokemonGenerations/components/StartersArrray";
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  min-height: 100vh;
   justify-content: space-around;
-  margin-top: 25px;
+  align-content: center;
   box-sizing: border-box;
   width: 100%;
   padding: 10px 7px 10px 7px;
@@ -21,22 +22,34 @@ const Wrapper = styled.div`
     padding-right: 20px;
   }
   @media ${Device.MOBILE_L} {
-    padding-left: 28px;
-    padding-right: 28px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media ${Device.TABLET} {
+    width: 70%;
   }
   @media ${Device.TABLET_L} {
-    padding-left: 40px;
-    padding-right: 40px;
+    width: 60%;
   }
+  @media ${Device.LAPTOP} {
+    width: 85%;
+  }
+
   @media ${Device.DESKTOP} {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 75%;
   }
   @media ${Device.DESKTOP_L} {
-    width: 88%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 60%;
+  }
+  @media ${Device.DESKTOP_VERY_L} {
+    width: 50%;
+  }
+  @media ${Device.WQHD}{
+    width: 35%;
+  }
+  @media ${Device.UHD}{
+    width: 30%;
   }
 `;
 
@@ -47,6 +60,15 @@ const Title = styled.h2`
   letter-spacing: 4px;
   width: 100%;
   text-align: center;
+  @media ${Device.MOBILE_M} {
+    margin-bottom: 15px;
+  }
+  @media ${Device.TABLET} {
+    margin-bottom: 20px;
+  }
+  @media ${Device.TABLET_L} {
+    margin-bottom: 30px;
+  }
 `;
 
 export interface HomePageProps {}
@@ -70,12 +92,6 @@ const HomePage: React.SFC<HomePageProps> = () => {
         title="All Pokemons"
         pokemonsNames={["treecko", "charmander", "froakie"]}
         genNum={8}
-      />
-      <PokemonGenerationCell
-        title="Who's That Pokemon?"
-        pokemonsNames={["treecko", "charmander", "froakie"]}
-        dark="dark"
-        genNum={9}
       />
     </Wrapper>
     

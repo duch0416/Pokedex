@@ -12,6 +12,7 @@ import {getSinglePok} from "../common/actions/getSinglePok"
 
 const Wrapper = styled.div<{ type: any }>`
   background-color: ${({ type }) => ColorMap.get(type)};
+  height: 100%;
 `;
 const TopSection = styled.div`
   position: relative;

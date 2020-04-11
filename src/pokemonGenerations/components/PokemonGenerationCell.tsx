@@ -6,6 +6,7 @@ import { useStartersImgs } from "../actions/useStartersImgs";
 import {  NavLink } from "react-router-dom";
 import {paths} from "../../navigation/paths"
 import CellBgc from "../../common/layout/CellBgc";
+import {Device} from "../../enums/Device"
 
 
 
@@ -29,6 +30,18 @@ const Wrapper = styled(NavLink)`
   &:hover {
     transform: translatex(5%) translateY(-5%);
   }
+  @media ${Device.MOBILE_M}{
+    width: 160px;
+    height: 120px;
+  }
+  @media ${Device.TABLET}{
+    width: 220px;
+    height: 160px;
+  }
+  @media ${Device.LAPTOP}{
+    width: 250px;
+    height: 180px;
+  }
 `;
 
 const PokeballImgWrapper = styled.div`
@@ -46,16 +59,23 @@ const PokemonStartersWrapper = styled.div`
   width: 100%;
   height: 80%;
 `;
-const PokemonImg = styled.img<{ index: number; title: string, dark: string | undefined}>`
+const PokemonImg = styled.img<{ index: number; title: string}>`
   position: absolute;
   bottom: -20%;
-  filter: ${({dark }) => dark  ? "brightness(0)" : ""};
-  right: 5%;
+  right: 50%;
   z-index: 2;
   width: ${({ title }) => (title === "Generation 7" ? "96px" : "")};
   height: ${({ title}) => (title === "Generation 7" ? "96px" : "")};
   transform: ${({ index }) =>
-    index == 0 ? "translateX(-50%)" : index == 2 ? "translateX(50%)" : ""};
+    index == 0 ? "translateX(100%)" : index == 1 ? "translateX(50%)" : "translateX(0%)"};
+  @media ${Device.TABLET}{
+    width: 130px;
+    height: 130px;
+  }
+  @media ${Device.LAPTOP}{
+    width: 150px;
+    height: 150px;
+  }
 `;
 
 const Title = styled.h2`
@@ -65,6 +85,10 @@ const Title = styled.h2`
   letter-spacing: 2px;
   text-align: center;
   line-height: 1.2;
+  @media ${Device.TABLET}{
+    margin-top: 20px;
+    font-size: 18px;
+  }
 `;
 export interface PokemonGenerationCellProps {
   title: string;
@@ -93,7 +117,6 @@ const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
                 src={pokeImg}
                 index={index}
                 title={title}
-                dark={dark}
               />
             );
           })}

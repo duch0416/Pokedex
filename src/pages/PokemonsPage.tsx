@@ -32,8 +32,15 @@ const Wrapper = styled.div`
   }
   @media ${Device.DESKTOP_L} {
     width: 88%;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  @media ${Device.DESKTOP_VERY_L} {
+    width: 84%;
+  }
+  @media ${Device.WQHD}{
+    width: 75%;
+  }
+  @media ${Device.UHD}{
+    width: 70%;
   }
 `;
 

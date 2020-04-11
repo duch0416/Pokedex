@@ -2,8 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import {useContext} from "react"
 
-import {pokemonContext} from "../../store/store"
-import { useEvolutionsImgs } from "../actions/useEvolutionImgs";
+import {pokemonContext} from "../../store/store";
 import EvolutionFragment from "./EvolutionFragment";
 
 
