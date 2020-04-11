@@ -1,8 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
+import {useContext} from "react"
+
 
 import { useEvolutionsImgs } from "../actions/useEvolutionImgs";
 import EvolutionFragment from "./EvolutionFragment";
+
+
 
 const Wrapper = styled.div`
   width: 100%;
@@ -14,10 +18,13 @@ const Title = styled.h3`
 
 
 
-export interface EvolutionsProps {}
+export interface EvolutionsProps {
+    pokName:string,
+}
 
-const Evolutions: React.SFC<EvolutionsProps> = () => {
-  const { evolutionsImgs, evolutionsNames } = useEvolutionsImgs();
+const Evolutions: React.SFC<EvolutionsProps> = ({pokName}) => {
+    const { evolutionsImgs, evolutionsNames } = useEvolutionsImgs(pokName);
+  
   return (
     <Wrapper>
       <Title>Evulution Chain</Title>

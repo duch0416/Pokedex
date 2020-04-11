@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useReducer, useEffect} from "react";
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
@@ -30,8 +31,8 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (
   props
 ) => {
   const pokeName = props.match.params.name;
-  const { pokemon } = usePokemonData(pokeName);
-  
+  const { pokemon } = usePokemonData(pokeName, "single");
+
 
   return (
     <Wrapper type={pokemon.types[0]}>

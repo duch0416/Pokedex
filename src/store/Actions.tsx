@@ -1,4 +1,6 @@
-import {ActionT} from "./statsReducer"
+export enum ActionT {
+    SET_POKEMON_STATS = "set_pokemon_stats"
+}
 
 export const setPokemonStats = (data: any) => {
     return {
@@ -6,3 +8,4 @@ export const setPokemonStats = (data: any) => {
         payload: data,
     }
 }
+

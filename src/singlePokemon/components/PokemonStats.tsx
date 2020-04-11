@@ -30,7 +30,7 @@ export interface PokemonStatsProps {
  
 const PokemonStats: React.SFC<PokemonStatsProps> =  () => {
     const stats = useContext(pokemonStatsContext).stats
-
+    
     return ( 
         <Wrapper>
             <StatsColumn>

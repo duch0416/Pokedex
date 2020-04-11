@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { getEvolutionChain, getSinglePokemon} from "../../api/actions/getPokemonData";
 
-export const useEvolutionsImgs = () => {
+
+export const useEvolutionsImgs = (pokName:string) => {
   const [evolutionsImgs, setEvolutionImgs] = useState<Array<string>>([]);
   const [evolutionsNames, setEvolutionsNames] = useState<Array<string>>([]);
 
-  const getEvolutionImg = async () => {
-    const data = await getEvolutionChain('greninja');
   
+  const getEvolutionImg = async () => {
+    console.log(pokName)
+    const data = await getEvolutionChain(pokName);
+    
     const firstForm = data.chain.species.name;
-    const secondForm = data.chain.evolves_to[0].species.name;
+    const secondForm =  data.chain.evolves_to[0].species.name;
     const thirdForm = data.chain.evolves_to[0].evolves_to[0].species.name;
 
     const evolutions = [firstForm, secondForm, thirdForm]
@@ -21,7 +24,6 @@ export const useEvolutionsImgs = () => {
             return [...prevState, pokemon.sprites.front_default]
         })
     })
-     
   };
 
 

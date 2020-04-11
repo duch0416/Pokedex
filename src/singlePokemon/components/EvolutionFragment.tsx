@@ -7,13 +7,16 @@ import ArrowImg from "../../common/layout/ArrowImg";
 const EvolutionsWrapper = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-content: center;
   padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #f4f5f4;
 `;
 
-const PokemonFormWrapper = styled.div``;
+const PokemonFormWrapper = styled.div`
+
+`;
 
 const ImgsWrapper = styled.div`
   width: 100px;
@@ -34,6 +37,7 @@ const ArrowContainer = styled.div`
 const PokemonName = styled.p`
     padding: 6px 6px;
     text-align: center;
+    height: 10%;
 `
 
 export interface EvolutionFragmentProps {

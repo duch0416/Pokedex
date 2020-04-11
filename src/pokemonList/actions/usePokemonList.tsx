@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 
 import { getPokemonArray } from "../../api/actions/getPokemonData";
+import {getPokemonList} from "./getPokemonList"
+
 
 export const usePokemonList = (generation: string) => {
-  const [pokemonsNameList, setPokemonNameList] = useState<Array<string>>([]);
+  const [pokemons, setPokemons] = useState<Array<any>>()
   let isCancelled = false
 
   const setLimitAndOffset = (generation: string) => {
@@ -33,14 +35,15 @@ export const usePokemonList = (generation: string) => {
   const getPokemonNameList = async () => {
     const interval = setLimitAndOffset(generation)
     const data = await getPokemonArray(interval);
-
-    setPokemonNameList(
-      data.results.map((pokemon: { name: string }) => {
-        return pokemon.name;
-      }),
-    );
+   
+   const poks= await Promise.all(data.results.map(async (pokemon:any) => {
+        const pok = await getPokemonList(pokemon.name);
+        return pok
+      }))
+      
+     setPokemons(poks)
   };
- 
+  
   
   useEffect(() => {
     if(!isCancelled){
@@ -49,9 +52,10 @@ export const usePokemonList = (generation: string) => {
     return() => {
       isCancelled = true
     }
-  }, []);
+  }, [generation]);
 
   return {
-    pokemonsNameList,
+    pokemons,
+    getPokemonNameList
   };
 };

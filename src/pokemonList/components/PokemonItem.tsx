@@ -104,14 +104,17 @@ const tText = styled.p`
 export interface PokemonItemProps {
   generation: string;
   pokemonName: string;
+  pokemon: any;
 }
 
 const PokemonItem: React.SFC<PokemonItemProps> = ({
   pokemonName,
   generation,
+  pokemon
 }) => {
-  const { pokemon } = usePokemonData(pokemonName);
-
+  // const { pokemon } = usePokemonData(pokemonName);
+  console.log(pokemon)
+  
   return (
     <CellBgc type={pokemon.types[0]}>
       <Wrapper

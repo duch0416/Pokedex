@@ -1,5 +1,4 @@
 import {createContext} from "react"
-import {initialState} from "./statsReducer"
+import {initialStatsState} from "./statsReducer"
 
-export const pokemonStatsContext = createContext(initialState)
-
+export const pokemonStatsContext = createContext(initialStatsState)

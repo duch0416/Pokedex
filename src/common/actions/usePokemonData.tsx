@@ -1,7 +1,7 @@
 import { useState, useEffect, useReducer } from "react";
 
 import { getSinglePokemon } from "../../api/actions/getPokemonData";
-import {statsReducer, initialState} from "../../store/statsReducer"
+import {statsReducer, initialStatsState} from "../../store/statsReducer"
 import {setPokemonStats} from "../../store/Actions"
 
 interface PokemonMinInterface {
@@ -11,8 +11,8 @@ interface PokemonMinInterface {
   types: Array<string>;
 }
 
-export const usePokemonData = (pokemonName: string) => {
-  const [state, dispatch] = useReducer(statsReducer, initialState)
+export const usePokemonData = (pokemonName: string, single?:string) => {
+  const [state, dispatch] = useReducer(statsReducer, initialStatsState)
   const [pokemon, setPokemon] = useState<PokemonMinInterface>({
     id: 1,
     name: "bulbasaur",
@@ -24,8 +24,10 @@ export const usePokemonData = (pokemonName: string) => {
   const getPokemonData = async () => {
     const data = await getSinglePokemon(pokemonName);
     // console.log(data)
+    console.log(data)
+    if(single){
     dispatch(setPokemonStats(data.stats))
-    
+    }
     let orderedTypesArray
     const typesNameArray = data.types.map((data: any) => {
       return data.type.name;

@@ -38,15 +38,15 @@ export interface DetailPokemonInfoProps {
 }
 
 const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
+  console.log(pokemon.name)
   return (
     <Wrapper>
-      {/* <PokemonImg src={pokemon.img} /> */}
       <ImgsWrapper>
         <PokemonImg src={pokemon.img} />
       </ImgsWrapper>
       <PokemonInfoNav></PokemonInfoNav>
-      {/* <PokemonStats/> */}
-      <Evolutions/>
+      <PokemonStats/>
+      <Evolutions pokName={pokemon.name}/>
     </Wrapper>
   );
 };

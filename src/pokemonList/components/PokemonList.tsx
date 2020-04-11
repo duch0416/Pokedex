@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useEffect} from "react";
 import styled from "styled-components";
 
 import PokemonItem from "./PokemonItem";
@@ -17,13 +18,13 @@ export interface PokemonListProps {
 }
 
 const PokemonList: React.SFC<PokemonListProps> = ({generation}) => {
-  const { pokemonsNameList } = usePokemonList(generation);
-  
+  const { pokemons } = usePokemonList(generation);
 
   return (
     <PokemonWrapper>
-      {pokemonsNameList.map((pokemonName: string) => {
-        return <PokemonItem key={pokemonName} pokemonName={pokemonName} generation={generation}/>;
+      {pokemons && pokemons.map((pokemon: any) => {
+        console.log(pokemon)
+        return <PokemonItem key={pokemon.id} pokemonName={pokemon.name} generation={generation} pokemon={pokemon}/>;
       })}
     </PokemonWrapper>
   );
