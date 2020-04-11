@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
 import styled from "styled-components";
+
+import {InfoType} from "../../enums/InfoType"
 
 const Nav = styled.nav`
   padding-top: 40px;
@@ -12,26 +13,37 @@ const PokeInfoList = styled.ul`
   border-bottom: 1px solid #f4f5f4;
 `;
 
-const PokeInfoEl = styled.li<{id: any, isActive: string}>`
+const PokeInfoEl = styled.li<{ id: any; isActive: string }>`
   text-decoration: none;
   padding-bottom: 14px;
   opacity: 0.6;
   color: #303943;
-  border-bottom: ${({id, isActive}) => id === isActive ? "2px solid #6C79DB" : ""};
+  border-bottom: ${({ id, isActive }) =>
+    id === isActive ? "2px solid #6C79DB" : ""};
 `;
 
-export interface PokemonInfoNavProps {}
+export interface PokemonInfoNavProps {
+  isActive: string;
+  setIsActive: any;
+}
 
-const PokemonInfoNav: React.SFC<PokemonInfoNavProps> = () => {
-const infoTexts = ['Base stats', 'Evolution']
-const [isActive, setIsActive] = useState<string>("Base stats");
-
+const PokemonInfoNav: React.SFC<PokemonInfoNavProps> = ({isActive, setIsActive}) => {
+  const infoTexts = [InfoType.BASE_STATS, InfoType.EVOLUTIONS];
 
   return (
     <Nav>
       <PokeInfoList>
-        {infoTexts.map((text:string) => {
-            return <PokeInfoEl key={text} id={text} isActive={isActive} onClick={() => setIsActive(text)}>{text}</PokeInfoEl>
+        {infoTexts.map((text: string) => {
+          return (
+            <PokeInfoEl
+              key={text}
+              id={text}
+              isActive={isActive}
+              onClick={() => setIsActive(text)}
+            >
+              {text}
+            </PokeInfoEl>
+          );
         })}
       </PokeInfoList>
     </Nav>

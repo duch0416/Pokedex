@@ -15,6 +15,7 @@ interface PokemonMinInterface {
 
 export const usePokemonData = (pokemonName: string) => {
   const [state, dispatch] = useReducer(PokemonReducer, initialStatsState)
+  let isCanceled = false;
   const [pokemon, setPokemon] = useState<PokemonMinInterface>({
     id: 1,
     name: "bulbasaurs",
@@ -33,7 +34,10 @@ export const usePokemonData = (pokemonName: string) => {
  
   
   useEffect(() => {
-    getPok()
+    if(!isCanceled){
+      getPok()
+    }
+    isCanceled = false;
   },[pokemonName])
 
   return {

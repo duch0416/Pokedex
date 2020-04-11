@@ -10,6 +10,7 @@ const Wrapper = styled.div`
     margin-top: 26px;
     display: flex;
     justify-content: space-around;
+    padding-bottom: 25px;
 `
 const StatsColumn = styled.div`
     display: flex;
@@ -21,6 +22,7 @@ const PokeStat = styled.p<{name?: string}>`
     opacity:${({name}) => name ? "0.6" : "1"};
     text-transform: capitalize;
     font-size: 14px;
+    margin-top: 10px;
 `
 
 export interface PokemonStatsProps {

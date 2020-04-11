@@ -1,9 +1,11 @@
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-import PokemonInfoNav from "./PokemonInfoNav"
-import PokemonStats from "./PokemonStats"
-import Evolutions from "./Evolutions"
+import PokemonInfoNav from "./PokemonInfoNav";
+import PokemonStats from "./PokemonStats";
+import Evolutions from "./Evolutions";
+import {InfoType} from "../../enums/InfoType"
 
 const Wrapper = styled.div`
   position: relative;
@@ -32,21 +34,20 @@ const PokemonImg = styled.img`
   transform: translateX(-50%);
 `;
 
-
 export interface DetailPokemonInfoProps {
   pokemon: any;
 }
 
 const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
+  const [isActive, setIsActive] = useState<string>(InfoType.BASE_STATS);
 
   return (
     <Wrapper>
       <ImgsWrapper>
         <PokemonImg src={pokemon.img} />
       </ImgsWrapper>
-      <PokemonInfoNav></PokemonInfoNav>
-      <PokemonStats/>
-      <Evolutions/>
+      <PokemonInfoNav isActive={isActive} setIsActive={setIsActive} />
+      {isActive === InfoType.BASE_STATS ? <PokemonStats /> : <Evolutions />}
     </Wrapper>
   );
 };

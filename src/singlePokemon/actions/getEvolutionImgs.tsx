@@ -9,7 +9,7 @@ export const getEvolutionImgs = async (pokemonName: string) => {
     
     
     const evolutionsNames = [firstForm, secondForm, thirdForm]
-    
+    console.log(data)
 
    const imgs = await Promise.all(evolutionsNames.map(async (pokemonName: string) => {
         const pokemon = await getSinglePokemon(pokemonName)
