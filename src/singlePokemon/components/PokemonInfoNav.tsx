@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import {InfoType} from "../../enums/InfoType"
+import {Device} from "../../enums/Device"
 
 const Nav = styled.nav`
   padding-top: 40px;
@@ -18,8 +19,13 @@ const PokeInfoEl = styled.li<{ id: any; isActive: string }>`
   padding-bottom: 14px;
   opacity: 0.6;
   color: #303943;
+  cursor: pointer;
   border-bottom: ${({ id, isActive }) =>
     id === isActive ? "2px solid #6C79DB" : ""};
+  @media ${Device.MOBILE_L}{
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
 `;
 
 export interface PokemonInfoNavProps {

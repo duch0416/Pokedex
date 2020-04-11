@@ -6,16 +6,28 @@ import PokemonInfoNav from "./PokemonInfoNav";
 import PokemonStats from "./PokemonStats";
 import Evolutions from "./Evolutions";
 import {InfoType} from "../../enums/InfoType"
+import { Device} from "../../enums/Device";
 
 const Wrapper = styled.div`
   position: relative;
-  height: 300px;
   background-color: white;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   padding-left: 27px;
   padding-right: 27px;
+  @media ${Device.TABLET} {
+    border-radius: 30px;
+  }
 `;
+
+const DetailInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media ${Device.TABLET} {
+    min-height: 400px;
+  }
+`
 
 const ImgsWrapper = styled.div`
   position: absolute;
@@ -23,7 +35,6 @@ const ImgsWrapper = styled.div`
   height: 150px;
   top: 0;
   left: 0;
-  /* background-color: red; */
   transform: translateY(-65%);
 `;
 const PokemonImg = styled.img`
@@ -47,7 +58,9 @@ const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
         <PokemonImg src={pokemon.img} />
       </ImgsWrapper>
       <PokemonInfoNav isActive={isActive} setIsActive={setIsActive} />
+      <DetailInfoWrapper>
       {isActive === InfoType.BASE_STATS ? <PokemonStats /> : <Evolutions />}
+      </DetailInfoWrapper>
     </Wrapper>
   );
 };

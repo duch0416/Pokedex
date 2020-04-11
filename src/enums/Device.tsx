@@ -10,3 +10,7 @@ export enum Device {
     WQHD = "(min-width: 3440px)",
     UHD = "(min-width: 3840px)"
 }
+
+export enum Height{
+    MOBILE_L= "(min-height: 740px)",
+}

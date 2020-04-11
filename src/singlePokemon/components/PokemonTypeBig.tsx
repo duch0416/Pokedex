@@ -11,8 +11,13 @@ const Wrapper = styled.div`
 `
 const Typetxt = styled.p`
     color: white;
-    font-size: "12px";
-   
+    font-size: 12px;
+   @media ${Device.MOBILE_M}{
+    font-size: 16px;
+   }
+   @media ${Device.MOBILE_L}{
+    font-size: 1.6rem;
+   }
 `
 
 export interface PokemonTypeBigProps {

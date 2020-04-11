@@ -5,18 +5,12 @@ import { Device } from "../../enums/Device";
 
 
 const PokemonNameTxt = styled.p<{big?: string}>`
-  font-size: ${({big}) => big ? "36px" : "14px"};
+  font-size: ${({big}) => big ? "2.5rem" : "0.9rem"};
   font-weight: 700;
   color: white;
   text-transform: capitalize;
-  @media ${Device.MOBILE_L} {
-    font-size: 16px;
-  }
-  @media ${Device.TABLET} {
-    font-size: 20px;
-  }
-  @media ${Device.TABLET_L} {
-    font-size: 24px;
+   @media ${Device.TABLET} {
+    font-size: ${({big}) => big ? "2.5rem" : "1.5rem"}
   }
 `;
 

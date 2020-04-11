@@ -21,15 +21,12 @@ const Wrapper = styled.div`
 
 const TypeTxt = styled.p`
   color: white;
-  font-size: 8px;
-  @media ${Device.MOBILE_L} {
-    font-size: 11px;
-  }
+  font-size: 0.6rem;
   @media ${Device.TABLET} {
-    font-size: 15px;
+    font-size: 0.9rem;
   }
   @media ${Device.TABLET_L} {
-    font-size: 18px;
+    font-size: 1.2rem;
   }
 `;
 

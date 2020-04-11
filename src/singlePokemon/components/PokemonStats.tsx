@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import {pokemonContext} from "../../store/store"
 import StatBar from "./statBar"
+import {Device} from "../../enums/Device"
 
 const Wrapper = styled.div`
     width: 100%;
@@ -23,6 +24,9 @@ const PokeStat = styled.p<{name?: string}>`
     text-transform: capitalize;
     font-size: 14px;
     margin-top: 10px;
+    @media ${Device.MOBILE_L}{
+        font-size: 1.2rem;
+    }
 `
 
 export interface PokemonStatsProps {
