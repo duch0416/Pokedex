@@ -1,12 +1,16 @@
 import * as React from "react";
+import {useState} from "react"
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
 import PokemonList from "../pokemonList/components/PokemonList";
 import { Device } from "../enums/Device";
+import PokeballIcon from "../nav/PokeballIcon"
+import MainNav from "../nav/MainNav"
 
 const Wrapper = styled.div`
   box-sizing: border-box;
+  position: relative;
   width: 100%;
   padding-left: 3px;
   padding-right: 3px;
@@ -72,6 +76,7 @@ const Nav = styled.div`
   height: 15%;
 `;
 
+
 export interface PokemonsPageProps {
   generation: string;
 }
@@ -80,9 +85,11 @@ const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (
   props
 ) => {
   const generation = props.match.params.generation;
-
+  const [navActive, setNavActive] = useState<boolean>(false)
   return (
     <Wrapper>
+      <PokeballIcon navActive={navActive} setNavActive={setNavActive}/>
+      <MainNav active={navActive}/>
       <Nav />
       <Title>
         {generation === "8" ? "All Pokemons" : `generation ${generation}`}

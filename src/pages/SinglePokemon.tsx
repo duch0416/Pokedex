@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
 import { ColorMap} from "../enums/Colors";

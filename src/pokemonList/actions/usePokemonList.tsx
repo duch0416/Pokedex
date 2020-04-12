@@ -8,7 +8,6 @@ export const usePokemonList = (generation: string) => {
   const [pokemons, setPokemons] = useState<Array<any>>();
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(20);
-  // const {getPokemonsPerPage} = usePagination(currentPage, setCurrentPage)
   const [totalPokemons, setTotalPokemons] = useState();
 
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
@@ -21,11 +20,9 @@ export const usePokemonList = (generation: string) => {
       indexOfFisrtPokemon,
       indexOfLastPokemon
     );
-    console.log(currentPokemons);
     return currentPokemons;
   };
 
-  console.log(currentPage)
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -37,6 +34,7 @@ export const usePokemonList = (generation: string) => {
     const data = await getPokemonArray(interval);
 
     setTotalPokemons(data.results.length);
+
     const pokemonsPerPage = getPokemonsPerPage(data.results);
     const poks = await Promise.all(
       pokemonsPerPage.map(async (pokemon: any) => {
