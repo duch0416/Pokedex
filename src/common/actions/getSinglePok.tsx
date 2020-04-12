@@ -1,9 +1,5 @@
-import {useState} from "react"
-
 import {getSinglePokemon} from "../../api/actions/getPokemonData"
     
-
-  
   export const getSinglePok = async (pokemonName: string) => {
     const data = await getSinglePokemon(pokemonName);
     
@@ -12,11 +8,8 @@ import {getSinglePokemon} from "../../api/actions/getPokemonData"
       return data.type.name;
     })
     
-    if(data.types[0].slot === 2){
-      orderedTypesArray = typesNameArray.reverse()
-    }else {
-      orderedTypesArray = typesNameArray
-    }
+    data.types[0].slot === 2 ? (orderedTypesArray = typesNameArray.reverse()) : (orderedTypesArray = typesNameArray);
+    
     const pokemon = {
         id: data.id,
         name: data.name,

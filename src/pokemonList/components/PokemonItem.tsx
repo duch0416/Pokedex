@@ -2,22 +2,21 @@ import * as React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { usePokemonData } from "../../singlePokemon/actions/usePokemonData";
-import { ColorMap, Colors } from "../../enums/Colors";
+import { ColorMap, Colors, Types } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
-import { paths } from "../../navigation/paths";
+import { Paths } from "../../navigation/Paths";
 import PokemonType from "./PokemonType";
 import PokemonId from "../../common/layout/PokemonId";
 import PokemonName from "../../common/layout/PokemonName";
 import CellBgc from "../../common/layout/CellBgc";
 
 
-const Wrapper = styled(NavLink)<{ type: any }>`
+const Wrapper = styled(NavLink)<{type: Types}>`
   display: block;
   text-decoration: none;
   width: 150px;
   height: 111px;
-  background-color: ${({ type }) => ColorMap.get(type)};
+  background-color: ${({ type }) => type ? ColorMap.get(type) : Colors.GRAY_SANDY};
   border-radius: 20px;
   position: relative;
   padding: 20px 13px;
@@ -97,10 +96,6 @@ const PokemonImage = styled.img`
   }
 `;
 
-const tText = styled.p`
-  color: white;
-  font-size: 8px;
-`
 export interface PokemonItemProps {
   generation: string;
   pokemonName: string;
@@ -117,14 +112,15 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({
     <CellBgc type={pokemon.types[0]}>
       <Wrapper
         type={pokemon.types[0]}
-        to={`${paths.POKEMONS}/${generation}/${pokemon.name}`}
+        to={`${Paths.POKEMONS}/${generation}/${pokemon.name}`}
       >
         <IdContainer>
           <PokemonId id={pokemon.id} />
         </IdContainer>
         <PokemonName name={pokemon.name} />
-        <PokemonType type={pokemon.types[0]} />
-        {pokemon.types[1] && <PokemonType type={pokemon.types[1]} />}
+        {pokemon.types.map((type:string) => {
+          return <PokemonType key={type} type={type} />
+        })}
         <PokemonImage src={pokemon.img} />
         <PokebalImage src={"/images/pokeball.svg"} />
       </Wrapper>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PokeballImg from "../../common/layout/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
 import {  NavLink } from "react-router-dom";
-import {paths} from "../../navigation/paths"
+import {Paths} from "../../navigation/Paths"
 import CellBgc from "../../common/layout/CellBgc";
 import {Device} from "../../enums/Device"
 
@@ -28,7 +28,7 @@ const Wrapper = styled(NavLink)`
   background-color: white;
   transition: ease 0.2s;
   &:hover {
-    transform: translatex(5%) translateY(-5%);
+    transform: translatex(3%) translateY(-3%);
   }
   @media ${Device.MOBILE_M}{
     width: 160px;
@@ -51,6 +51,14 @@ const PokeballImgWrapper = styled.div`
   width: 80px;
   height: 80px;
   transform: translateX(5%) translateY(15%);
+  @media ${Device.TABLET}{
+    width: 100px;
+    height: 100px;
+  }
+  @media ${Device.LAPTOP}{
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 const PokemonStartersWrapper = styled.div`
@@ -67,7 +75,7 @@ const PokemonImg = styled.img<{ index: number; title: string}>`
   width: ${({ title }) => (title === "Generation 7" ? "96px" : "")};
   height: ${({ title}) => (title === "Generation 7" ? "96px" : "")};
   transform: ${({ index }) =>
-    index == 0 ? "translateX(100%)" : index == 1 ? "translateX(50%)" : "translateX(0%)"};
+    index === 0 ? "translateX(100%)" : index === 1 ? "translateX(50%)" : "translateX(0%)"};
   @media ${Device.TABLET}{
     width: 130px;
     height: 130px;
@@ -90,7 +98,8 @@ const Title = styled.h2`
     font-size: 18px;
   }
 `;
-export interface PokemonGenerationCellProps {
+
+interface PokemonGenerationCellProps {
   title: string;
   pokemonsNames: string[];
   genNum: number;
@@ -107,7 +116,7 @@ const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
  
   return (
     <CellBgc>
-      <Wrapper  to={`${paths.POKEMONS}/${genNum}`} > 
+      <Wrapper  to={`${Paths.POKEMONS}/${genNum}`} > 
         <Title>{title}</Title>
         <PokemonStartersWrapper>
           {startersImgs.map((pokeImg: string, index: number) => {

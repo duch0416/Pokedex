@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
 import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
-import { ColorMap, Colors } from "../enums/Colors";
+import { ColorMap} from "../enums/Colors";
 import BasicPokemonInfo from "../singlePokemon/components/BasicPokemonInfo";
 import DetailPokemonInfo from "../singlePokemon/components/DetailPokemonInfo";
 import { Device} from "../enums/Device";

@@ -14,10 +14,6 @@ const EvolutionsWrapper = styled.div`
   border-bottom: 1px solid #f4f5f4;
 `;
 
-const PokemonFormWrapper = styled.div`
-
-`;
-
 const ImgsWrapper = styled.div`
   width: 100px;
   height: 100px;
@@ -55,23 +51,23 @@ const EvolutionFragment: React.SFC<EvolutionFragmentProps> = ({
 }) => {
   return (
     <EvolutionsWrapper>
-      <PokemonFormWrapper>
+      <div>
         <ImgsWrapper>
           <PokebalImg color={"#F4F5F4"} />
           <PokemonImg src={beforeEvolutionImg} />
         </ImgsWrapper>
         <PokemonName>{beforeEvolutionName}</PokemonName>
-      </PokemonFormWrapper>
+      </div>
       <ArrowContainer>
         <ArrowImg color={"#DADADA"} />
       </ArrowContainer>
-      <PokemonFormWrapper>
+      <div>
         <ImgsWrapper>
           <PokebalImg color={"#F4F5F4"} />
           <PokemonImg src={afterEvolutionImg} />
         </ImgsWrapper>
         <PokemonName>{afterEvolutionName}</PokemonName>
-      </PokemonFormWrapper>
+      </div>
     </EvolutionsWrapper>
   );
 };

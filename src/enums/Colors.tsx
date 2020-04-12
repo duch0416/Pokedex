@@ -16,7 +16,7 @@ export enum Types {
   DRAGON = "dragon",
   DARK = "dark",
   STEEL = "steel",
-  FAIRY = "fairy"
+  FAIRY = "fairy",
 }
 
 export enum Colors {
@@ -38,7 +38,8 @@ export enum Colors {
   LAVENDER = "#8B7DF0",
   DARK_BROWN = "#8C6F61",
   SILVER = "#757575",
-  LIGHT_PINK = "#F1A9F1"
+  LIGHT_PINK = "#F1A9F1",
+  WHITE = "white"
 }
 
 export const ColorMap = new Map([

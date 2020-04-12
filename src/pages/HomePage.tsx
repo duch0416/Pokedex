@@ -16,7 +16,6 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding: 10px 7px 10px 7px;
-  overflow: hidden;
   @media ${Device.MOBILE_M} {
     padding-left: 20px;
     padding-right: 20px;

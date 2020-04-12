@@ -13,7 +13,11 @@ const Wrapper = styled.div`
   padding-bottom: 20px;
   position: relative;
   @media ${Device.TABLET} {
-    width: 80%;
+    width: 70%;
+    margin: auto;
+  }
+  @media ${Device.DESKTOP} {
+    width: 60%;
     margin: auto;
   }
 `;

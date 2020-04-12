@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
 import PokemonList from "../pokemonList/components/PokemonList";
-import PokeballImg from "../common/layout/PokeballImg"
-import {Device} from "../enums/Device"
-
+import { Device } from "../enums/Device";
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -36,10 +34,10 @@ const Wrapper = styled.div`
   @media ${Device.DESKTOP_VERY_L} {
     width: 84%;
   }
-  @media ${Device.WQHD}{
+  @media ${Device.WQHD} {
     width: 75%;
   }
-  @media ${Device.UHD}{
+  @media ${Device.UHD} {
     width: 70%;
   }
 `;
@@ -72,23 +70,25 @@ const Title = styled.h1`
 const Nav = styled.div`
   width: 100%;
   height: 15%;
-`
+`;
 
 export interface PokemonsPageProps {
   generation: string;
 }
 
-const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) => {
-  const generation = props.match.params.generation
+const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (
+  props
+) => {
+  const generation = props.match.params.generation;
 
   return (
     <Wrapper>
-      <Nav/>
-      {/* <PokeballImg color="#3039430f"/> */}
-      <Title>Pokedex</Title>
-      <PokemonList generation={generation}/>
+      <Nav />
+      <Title>
+        {generation === "8" ? "All Pokemons" : `generation ${generation}`}
+      </Title>
+      <PokemonList generation={generation} />
     </Wrapper>
-  
   );
 };
 

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 
 import { getPokemonArray } from "../../api/actions/getPokemonData";
 import {getSinglePok} from "../../common/actions/getSinglePok"
+import {pokedex} from "../../api/ApiConfig"
 
 
 export const usePokemonList = (generation: string) => {
   const [pokemons, setPokemons] = useState<Array<any>>()
-  let isCancelled = false
 
   const setLimitAndOffset = (generation: string) => {
     
@@ -35,7 +35,10 @@ export const usePokemonList = (generation: string) => {
   const getPokemonNameList = async () => {
     const interval = setLimitAndOffset(generation)
     const data = await getPokemonArray(interval);
-   
+
+    const generations = await pokedex.getGenerationsList()
+    console.log(generations)
+
    const poks= await Promise.all(data.results.map(async (pokemon:any) => {
         const pok = await getSinglePok(pokemon.name);
         return pok
@@ -46,12 +49,8 @@ export const usePokemonList = (generation: string) => {
   
   
   useEffect(() => {
-    if(!isCancelled){
-    getPokemonNameList()
-    }
-    return() => {
-      isCancelled = true
-    }
+    getPokemonNameList()  
+    
   }, [generation]);
 
   return {

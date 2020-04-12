@@ -1,10 +1,10 @@
 import * as React from "react";
-import {useEffect} from "react";
 import styled from "styled-components";
 
 import PokemonItem from "./PokemonItem";
 import "../actions/usePokemonList";
 import { usePokemonList } from "../actions/usePokemonList";
+import {PokemonInterface} from "../../singlePokemon/actions/usePokemonData"
 
 const PokemonWrapper = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const PokemonList: React.SFC<PokemonListProps> = ({generation}) => {
 
   return (
     <PokemonWrapper>
-      {pokemons && pokemons.map((pokemon: any) => {
+      {pokemons && pokemons.map((pokemon: PokemonInterface) => {
         return <PokemonItem key={pokemon.id} pokemonName={pokemon.name} generation={generation} pokemon={pokemon}/>;
       })}
     </PokemonWrapper>

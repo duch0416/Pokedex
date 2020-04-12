@@ -21,7 +21,7 @@ const PokeInfoEl = styled.li<{ id: any; isActive: string }>`
   color: #303943;
   cursor: pointer;
   border-bottom: ${({ id, isActive }) =>
-    id === isActive ? "2px solid #6C79DB" : ""};
+    id === isActive ? "2px solid #6C79DB" : "none"};
   @media ${Device.MOBILE_L}{
     font-size: 1.3rem;
     font-weight: 400;
