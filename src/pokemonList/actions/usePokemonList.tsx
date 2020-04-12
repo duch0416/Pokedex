@@ -1,60 +1,62 @@
 import { useState, useEffect } from "react";
 
 import { getPokemonArray } from "../../api/actions/getPokemonData";
-import {getSinglePok} from "../../common/actions/getSinglePok"
-import {pokedex} from "../../api/ApiConfig"
-
+import { getSinglePok } from "../../common/actions/getSinglePok";
+import { setLimitAndOffset } from "./setLimitAndOffset";
 
 export const usePokemonList = (generation: string) => {
-  const [pokemons, setPokemons] = useState<Array<any>>()
+  const [pokemons, setPokemons] = useState<Array<any>>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonsPerPage] = useState(20);
+  // const {getPokemonsPerPage} = usePagination(currentPage, setCurrentPage)
+  const [totalPokemons, setTotalPokemons] = useState();
 
-  const setLimitAndOffset = (generation: string) => {
-    
-    let interval
-    if(generation === "1"){
-       interval = { limit: 151, offset: 0 }
-    }else if(generation === "2"){
-      interval = { limit: 100, offset: 151 }
-    }else if(generation === "3"){
-      interval = { limit: 135, offset: 251 }
-    }else if(generation === "4"){
-      interval = { limit: 107, offset: 386 }
-    }else if(generation === "5"){
-      interval = { limit: 156, offset: 493 }
-    }else if(generation === "6"){
-      interval = { limit: 72, offset: 649 }
-    }else if(generation === "7"){
-      interval = { limit: 81, offset: 721 }
-    }else {
-      interval = { limit: 802, offset: 0 }
-    }
-    return interval
-  }
+  const indexOfLastPokemon = currentPage * pokemonsPerPage;
+  const indexOfFisrtPokemon = indexOfLastPokemon - pokemonsPerPage;
 
   
+  
+  const getPokemonsPerPage = (pokemons: any) => {
+    const currentPokemons = pokemons.slice(
+      indexOfFisrtPokemon,
+      indexOfLastPokemon
+    );
+    console.log(currentPokemons);
+    return currentPokemons;
+  };
+
+  console.log(currentPage)
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+
   const getPokemonNameList = async () => {
-    const interval = setLimitAndOffset(generation)
+    const interval = setLimitAndOffset(generation);
     const data = await getPokemonArray(interval);
 
-    const generations = await pokedex.getGenerationsList()
-    console.log(generations)
-
-   const poks= await Promise.all(data.results.map(async (pokemon:any) => {
+    setTotalPokemons(data.results.length);
+    const pokemonsPerPage = getPokemonsPerPage(data.results);
+    const poks = await Promise.all(
+      pokemonsPerPage.map(async (pokemon: any) => {
         const pok = await getSinglePok(pokemon.name);
-        return pok
-      }))
-      
-     setPokemons(poks)
+        return pok;
+      })
+    );
+
+    setPokemons(poks);
   };
-  
-  
+
   useEffect(() => {
-    getPokemonNameList()  
-    
-  }, [generation]);
+    getPokemonNameList();
+  }, [generation, currentPage]);
 
   return {
     pokemons,
-    getPokemonNameList
+    getPokemonNameList,
+    totalPokemons,
+    pokemonsPerPage,
+    paginate
   };
 };
