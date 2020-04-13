@@ -27,6 +27,9 @@ const DetailInfoWrapper = styled.div`
   @media ${Device.TABLET} {
     min-height: 400px;
   }
+  @media ${Device.LAPTOP} {
+    min-height: 470px;
+  }
 `
 
 const ImgsWrapper = styled.div`

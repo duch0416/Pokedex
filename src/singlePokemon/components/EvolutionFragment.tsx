@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import PokebalImg from "../../common/layout/PokeballImg";
 import ArrowImg from "../../common/layout/ArrowImg";
+import {Device} from "../../enums/Device"
 
 const EvolutionsWrapper = styled.div`
   display: flex;
@@ -11,19 +12,27 @@ const EvolutionsWrapper = styled.div`
   align-content: center;
   padding-top: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #f4f5f4;
+
 `;
 
 const ImgsWrapper = styled.div`
   width: 100px;
   height: 100px;
   position: relative;
+  @media ${Device.LAPTOP} {
+    width: 130px;
+    height: 130px;
+  }
 `;
 const PokemonImg = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  @media ${Device.LAPTOP} {
+    width: 130px;
+    height: 130px;
+  }
 `;
 
 const ArrowContainer = styled.div`

@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 import { Paths } from "../navigation/Paths";
-import { Colors } from "../enums/Colors";
+import Filters from "./Filters";
+import {usePokemonList} from "../pokemonList/actions/usePokemonList"
 
 const Wrapper = styled.div<{ active: boolean }>`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-content: flex-start;
   position: fixed;
   top: 0;
   right: 0;
@@ -40,7 +43,7 @@ const MainNav: React.SFC<MainNavProps> = ({ active }) => {
   return (
     <Wrapper active={active}>
       <GoToHomePage to={`${Paths.HOME}`}>Home Page</GoToHomePage>
-
+      <Filters />
     </Wrapper>
   );
 };

@@ -12,13 +12,16 @@ const Wrapper = styled.div`
   margin-top: 15px;
   padding-bottom: 20px;
   position: relative;
+  min-height: 200px;
   @media ${Device.TABLET} {
     width: 70%;
     margin: auto;
   }
-  @media ${Device.DESKTOP} {
+  @media ${Device.LAPTOP} {
     width: 60%;
-    margin: auto;
+  }
+  @media ${Device.DESKTOP} {
+    width: 50%;
   }
 `;
 const Title = styled.h3`

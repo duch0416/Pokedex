@@ -18,10 +18,10 @@ export interface PokeballIconProps {
 }
 
 const PokeballIcon: React.SFC<PokeballIconProps> = ({setNavActive,navActive}) => {
-    console.log(navActive)
   const handleClick = () => {
     setNavActive(!navActive);
   };
+
   return (
     <Picon
       onClick={handleClick}
@@ -29,6 +29,7 @@ const PokeballIcon: React.SFC<PokeballIconProps> = ({setNavActive,navActive}) =>
       active={navActive}
     />
   );
+  
 };
 
 export default PokeballIcon;

@@ -10,13 +10,13 @@ import PokemonId from "../../common/layout/PokemonId";
 import PokemonName from "../../common/layout/PokemonName";
 import CellBgc from "../../common/layout/CellBgc";
 
-
-const Wrapper = styled(NavLink)<{type: Types}>`
+const Wrapper = styled(NavLink)<{ type: Types }>`
   display: block;
   text-decoration: none;
   width: 150px;
   height: 111px;
-  background-color: ${({ type }) => type ? ColorMap.get(type) : Colors.GRAY_SANDY};
+  background-color: ${({ type }) =>
+    type ? ColorMap.get(type) : Colors.GRAY_SANDY};
   border-radius: 20px;
   position: relative;
   padding: 20px 13px;
@@ -98,16 +98,11 @@ const PokemonImage = styled.img`
 
 export interface PokemonItemProps {
   generation: string;
-  pokemonName: string;
   pokemon: any;
 }
 
-const PokemonItem: React.SFC<PokemonItemProps> = ({
-  pokemonName,
-  generation,
-  pokemon
-}) => {
-  
+const PokemonItem: React.SFC<PokemonItemProps> = ({ generation,pokemon}) => {
+
   return (
     <CellBgc type={pokemon.types[0]}>
       <Wrapper
@@ -118,8 +113,8 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({
           <PokemonId id={pokemon.id} />
         </IdContainer>
         <PokemonName name={pokemon.name} />
-        {pokemon.types.map((type:string) => {
-          return <PokemonType key={type} type={type} />
+        {pokemon.types.map((type: string) => {
+          return <PokemonType key={type} type={type} />;
         })}
         <PokemonImage src={pokemon.img} />
         <PokebalImage src={"/images/pokeball.svg"} />

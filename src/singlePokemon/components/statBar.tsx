@@ -22,12 +22,12 @@ const StatPercentage = styled.div<{percentage: number, red?: string}>`
         height: 6px;
     }
 `
-export interface statBarProps {
+export interface StatBarProps {
     baseStat:number;
     red?: string;
 }
  
-const statBar: React.SFC<statBarProps> = ({baseStat, red}) => {
+const StatBar: React.SFC<StatBarProps> = ({baseStat, red}) => {
     const percentage = (baseStat / 200) * 100
     return ( 
         <Wrapper>
@@ -36,4 +36,4 @@ const statBar: React.SFC<statBarProps> = ({baseStat, red}) => {
      );
 }
  
-export default statBar;
+export default StatBar;

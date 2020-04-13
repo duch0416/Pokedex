@@ -1,6 +1,6 @@
 import { useState, useEffect, useReducer } from "react";
 
-import {PokemonReducer, initialStatsState} from "../../store/PokemonReducer"
+import {PokemonReducer, initialPokemonsState} from "../../store/PokemonReducer"
 import {setPokemonData} from "../../store/Actions"
 import {getSinglePok} from "../../common/actions/getSinglePok"
 import {getEvolutionImgs} from "./getEvolutionImgs"
@@ -16,7 +16,7 @@ export interface PokemonInterface {
 
 
 export const usePokemonData = (pokemonName: string) => {
-  const [state, dispatch] = useReducer(PokemonReducer, initialStatsState)
+  const [state, dispatch] = useReducer(PokemonReducer, initialPokemonsState)
   let isCanceled = false;
   const [pokemon, setPokemon] = useState<PokemonInterface>({
     id: 0,
