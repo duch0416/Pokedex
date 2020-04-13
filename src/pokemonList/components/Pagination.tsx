@@ -38,15 +38,11 @@ background-color: ${({white}) => white ? "white" : "red"};
 
 export interface PaginationProps {
   totalPokemons: number | undefined;
-  pokemonsPerPage: any;
-  paginate: any;
+  pokemonsPerPage: number;
+  paginate(pageNum: number): void;
 }
 
-const Pagination: React.SFC<PaginationProps> = ({
-  totalPokemons,
-  pokemonsPerPage,
-  paginate,
-}) => {
+const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,paginate,}) => {
   const pageNumbers = [];
 
   if (totalPokemons) {

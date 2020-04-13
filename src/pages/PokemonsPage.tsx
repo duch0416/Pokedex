@@ -7,6 +7,7 @@ import PokemonList from "../pokemonList/components/PokemonList";
 import { Device } from "../enums/Device";
 import PokeballIcon from "../nav/PokeballIcon"
 import MainNav from "../nav/MainNav"
+import SpinningPokeball from "../common/layout/spinningPokeball"
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -77,7 +78,7 @@ const Nav = styled.div`
 `;
 
 
-export interface PokemonsPageProps {
+interface PokemonsPageProps {
   generation: string;
 }
 
@@ -86,6 +87,7 @@ const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (
 ) => {
   const generation = props.match.params.generation;
   const [navActive, setNavActive] = useState<boolean>(false)
+  
   return (
     <Wrapper>
       <PokeballIcon navActive={navActive} setNavActive={setNavActive}/>

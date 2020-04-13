@@ -9,8 +9,9 @@ import PokemonType from "./PokemonType";
 import PokemonId from "../../common/layout/PokemonId";
 import PokemonName from "../../common/layout/PokemonName";
 import CellBgc from "../../common/layout/CellBgc";
+import {PokemonInterface} from "../../types/Types"
 
-const Wrapper = styled(NavLink)<{ type: Types }>`
+const Wrapper = styled(NavLink)<{ type: Types}>`
   display: block;
   text-decoration: none;
   width: 150px;
@@ -98,7 +99,7 @@ const PokemonImage = styled.img`
 
 export interface PokemonItemProps {
   generation: string;
-  pokemon: any;
+  pokemon: PokemonInterface;
 }
 
 const PokemonItem: React.SFC<PokemonItemProps> = ({ generation,pokemon}) => {
@@ -113,7 +114,7 @@ const PokemonItem: React.SFC<PokemonItemProps> = ({ generation,pokemon}) => {
           <PokemonId id={pokemon.id} />
         </IdContainer>
         <PokemonName name={pokemon.name} />
-        {pokemon.types.map((type: string) => {
+        {pokemon.types.map((type: Types) => {
           return <PokemonType key={type} type={type} />;
         })}
         <PokemonImage src={pokemon.img} />

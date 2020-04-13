@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface ArrowImgProps {
+interface ArrowImgProps {
     color: string
 }
  

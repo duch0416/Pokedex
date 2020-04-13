@@ -70,9 +70,8 @@ const Title = styled.h2`
   }
 `;
 
-export interface HomePageProps {}
 
-const HomePage: React.SFC<HomePageProps> = () => {
+const HomePage: React.SFC = () => {
   
   return (
     <Wrapper>

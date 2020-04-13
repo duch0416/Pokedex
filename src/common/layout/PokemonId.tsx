@@ -13,7 +13,7 @@ const IdTxt = styled.p<{big?: string}>`
   }
 `;
 
-export interface PokemonIdProps {
+interface PokemonIdProps {
   id: number;
   big?: string;
 }

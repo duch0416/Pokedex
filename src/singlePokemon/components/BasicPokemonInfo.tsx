@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PokemonName from "../../common/layout/PokemonName";
 import PokemonTypeBig from "../../singlePokemon/components/PokemonTypeBig";
 import PokemonId from "../../common/layout/PokemonId";
+import {PokemonInterface} from "../../types/Types"
 
 const Wrapper = styled.div`
   position: relative;
@@ -22,7 +23,7 @@ const TypesContainer = styled.div`
 `;
 
 export interface BasicPokemonInfoProps {
-  pokemon: any;
+  pokemon: PokemonInterface;
 }
 
 const BasicPokemonInfo: React.SFC<BasicPokemonInfoProps> = ({ pokemon }) => {

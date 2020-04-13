@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
-import { ColorMap} from "../enums/Colors";
+import { ColorMap, Types } from "../enums/Colors";
 import BasicPokemonInfo from "../singlePokemon/components/BasicPokemonInfo";
 import DetailPokemonInfo from "../singlePokemon/components/DetailPokemonInfo";
-import { Device} from "../enums/Device";
+import SpinningPokeball from "../common/layout/spinningPokeball";
+import { Device } from "../enums/Device";
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   @media ${Device.TABLET} {
@@ -48,7 +50,7 @@ const Arrow = styled.img`
   transform: rotate(180deg);
 `;
 
-export interface SinglePokemonProps {
+interface SinglePokemonProps {
   name: string;
 }
 
@@ -56,18 +58,21 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (
   props
 ) => {
   const pokName = props.match.params.name;
-  const { pokemon } = usePokemonData(pokName);
-  // const [pok, setPokemon] = useState<any>()
+  const { pokemon, isLoading } = usePokemonData(pokName);
 
   return (
     <Wrapper>
-      <ColorWrapper type={pokemon && pokemon.types[0]}>
-        <TopSection>
-          <Arrow src="/images/arrow.svg" />
-          <BasicPokemonInfo pokemon={pokemon} />
-        </TopSection>
-        <DetailPokemonInfo pokemon={pokemon} />
-      </ColorWrapper>
+      {isLoading ? (
+        <SpinningPokeball />
+      ) : (
+        <ColorWrapper type={pokemon.types[0]}>
+          <TopSection>
+            <Arrow src="/images/arrow.svg" />
+            <BasicPokemonInfo pokemon={pokemon} />
+          </TopSection>
+          <DetailPokemonInfo pokemon={pokemon} />
+        </ColorWrapper>
+      )}
     </Wrapper>
   );
 };

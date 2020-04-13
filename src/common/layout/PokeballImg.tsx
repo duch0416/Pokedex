@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface PokeballImgProps {
+interface PokeballImgProps {
   color: string;
 }
 

@@ -6,7 +6,7 @@ import PokemonItem from "./PokemonItem";
 import "../actions/usePokemonList";
 import Pagination from "./Pagination";
 import { usePokemonList } from "../actions/usePokemonList";
-import { PokemonInterface } from "../../singlePokemon/actions/usePokemonData";
+import { PokemonInterface } from "../../types/Types";
 
 const PokemonWrapper = styled.div`
   display: flex;

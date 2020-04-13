@@ -14,7 +14,7 @@ const PokemonNameTxt = styled.p<{big?: string}>`
   }
 `;
 
-export interface PokemonNameProps {
+interface PokemonNameProps {
     name: string
     big?: string
 }

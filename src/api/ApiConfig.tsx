@@ -5,7 +5,6 @@ const options = {
     hostName: 'localhost:443',
     versionPath: '/api/v2/',
     cache: true,
- 
   }
 
 export const pokedex = new Pokedex.Pokedex();

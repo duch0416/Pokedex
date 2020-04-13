@@ -7,6 +7,7 @@ import PokemonStats from "./PokemonStats";
 import Evolutions from "./Evolutions";
 import {InfoType} from "../../enums/InfoType"
 import { Device} from "../../enums/Device";
+import {PokemonInterface} from "../../types/Types"
 
 const Wrapper = styled.div`
   position: relative;
@@ -49,7 +50,7 @@ const PokemonImg = styled.img`
 `;
 
 export interface DetailPokemonInfoProps {
-  pokemon: any;
+  pokemon: PokemonInterface;
 }
 
 const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {

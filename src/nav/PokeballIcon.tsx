@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import {Device} from "../enums/Device"
+
 const Picon = styled.img<{ active: boolean }>`
   position: fixed;
   top: 20px;
@@ -10,11 +12,15 @@ const Picon = styled.img<{ active: boolean }>`
   cursor: pointer;
   transition: ease 0.2s;
   transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
+  @media ${Device.DESKTOP} {
+    top: 60px;
+    right: 100px;
+  }
 `;
 
-export interface PokeballIconProps {
+interface PokeballIconProps {
   navActive: boolean;
-  setNavActive: any;
+  setNavActive: (value: boolean) => void;
 }
 
 const PokeballIcon: React.SFC<PokeballIconProps> = ({setNavActive,navActive}) => {
@@ -29,7 +35,7 @@ const PokeballIcon: React.SFC<PokeballIconProps> = ({setNavActive,navActive}) =>
       active={navActive}
     />
   );
-  
+
 };
 
 export default PokeballIcon;

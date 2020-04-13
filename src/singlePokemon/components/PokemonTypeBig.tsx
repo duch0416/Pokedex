@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from "styled-components"
 
 import { Device } from "../../enums/Device";
+import { Types } from "../../enums/Colors";
 
 const Wrapper = styled.div`
     background-color: #ffffff32;
@@ -21,7 +22,7 @@ const Typetxt = styled.p`
 `
 
 export interface PokemonTypeBigProps {
-    type: string;
+    type: Types;
 }
  
 const PokemonTypeBig: React.SFC<PokemonTypeBigProps> = ({type}) => {

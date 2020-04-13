@@ -4,7 +4,7 @@ import {statsType, evolutionDataType} from "../types/Types"
 export const initialPokemonsState = {stats: [], evolutionData: { evolutionsNames: [], imgs: []}}
 
 
-export const PokemonReducer = (state:{stats: statsType, evolutionData: evolutionDataType}, action:any) => {
+export const PokemonReducer = (state:{stats: statsType, evolutionData: evolutionDataType}, action: any) => {
     switch(action.type){
         case ActionT.SET_POKEMON__DATA:{
             return{

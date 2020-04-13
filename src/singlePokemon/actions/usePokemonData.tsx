@@ -4,20 +4,12 @@ import {PokemonReducer, initialPokemonsState} from "../../store/PokemonReducer"
 import {setPokemonData} from "../../store/Actions"
 import {getSinglePok} from "../../common/actions/getSinglePok"
 import {getEvolutionImgs} from "./getEvolutionImgs"
-import {evolutionDataType} from "../../types/Types"
-
-export interface PokemonInterface {
-  id: number;
-  name: string;
-  img: string;
-  types: Array<string>;
-  stats: Array<string>;
-}
+import {PokemonInterface} from "../../types/Types"
 
 
 export const usePokemonData = (pokemonName: string) => {
   const [state, dispatch] = useReducer(PokemonReducer, initialPokemonsState)
-  let isCanceled = false;
+  const [isLoading, setIsLoading] = useState(false)
   const [pokemon, setPokemon] = useState<PokemonInterface>({
     id: 0,
     name: "",
@@ -27,22 +19,25 @@ export const usePokemonData = (pokemonName: string) => {
   });
   
   const getPok = async() => {
+    setIsLoading(true)
+    try{
    const pok = await getSinglePok(pokemonName)
    setPokemon(pok)
-
    const evolutionData:any = await getEvolutionImgs(pokemonName)
    dispatch(setPokemonData(pok.stats, evolutionData))
+    }catch(err){
+      console.log(err)
+    }
+    setIsLoading(false)
   }
  
   
   useEffect(() => {
-    if(!isCanceled){
       getPok()
-    }
-    isCanceled = false;
   },[pokemonName])
 
   return {
     pokemon,
+    isLoading
   }
 };

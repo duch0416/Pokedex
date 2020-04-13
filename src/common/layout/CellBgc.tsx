@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { ColorMap} from "../../enums/Colors";
+import { ColorMap, Types} from "../../enums/Colors";
 import { Device } from "../../enums/Device";
 
-const Background = styled.div<{ type: any }>`
-    background-color:  ${({ type }) => type ? `${ColorMap.get(type)}81` : "gray"};
+const Background = styled.div<{ type: Types | undefined }>`
+    background-color:  ${({ type }) => type  ? `${ColorMap.get(type)}81` : "gray"};
     border-radius: 20px;
     margin-bottom: 10px;
    
@@ -19,8 +19,8 @@ const Background = styled.div<{ type: any }>`
   }
 `
 
-export interface PokemonIdProps {
-  type?: string;
+interface PokemonIdProps {
+  type?: Types | undefined;
 }
 
 const PokemonId: React.SFC<PokemonIdProps> = ({ children, type }) => {

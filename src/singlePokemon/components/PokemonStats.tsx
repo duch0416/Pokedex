@@ -29,11 +29,9 @@ const PokeStat = styled.p<{name?: string}>`
     }
 `
 
-export interface PokemonStatsProps {
-    
-}
+
  
-const PokemonStats: React.SFC<PokemonStatsProps> =  () => {
+const PokemonStats: React.SFC =  () => {
     const stats = useContext(pokemonContext).stats
    
     return ( 

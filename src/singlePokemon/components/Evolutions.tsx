@@ -45,9 +45,8 @@ const NoEvolutionsImg = styled.img`
   transform: translateX(-50%) translateY(-50%);
 `;
 
-export interface EvolutionsProps {}
 
-const Evolutions: React.SFC<EvolutionsProps> = () => {
+const Evolutions: React.SFC = () => {
   const evolutionData = useContext(pokemonContext).evolutionData;
   const evolutionsNames = evolutionData.evolutionsNames;
   const evolutionsImgs = evolutionData.imgs;

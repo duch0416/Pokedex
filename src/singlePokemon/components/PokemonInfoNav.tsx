@@ -30,7 +30,7 @@ const PokeInfoEl = styled.li<{ id: any; isActive: string }>`
 
 export interface PokemonInfoNavProps {
   isActive: string;
-  setIsActive: any;
+  setIsActive: (value: string) => void;
 }
 
 const PokemonInfoNav: React.SFC<PokemonInfoNavProps> = ({isActive, setIsActive}) => {
