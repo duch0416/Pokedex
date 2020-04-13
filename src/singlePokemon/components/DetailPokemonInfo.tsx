@@ -5,9 +5,10 @@ import styled from "styled-components";
 import PokemonInfoNav from "./PokemonInfoNav";
 import PokemonStats from "./PokemonStats";
 import Evolutions from "./Evolutions";
-import {InfoType} from "../../enums/InfoType"
-import { Device} from "../../enums/Device";
-import {PokemonInterface} from "../../types/Types"
+import { InfoType } from "../../enums/InfoType";
+import { Device } from "../../enums/Device";
+import { PokemonInterface } from "../../types/Types";
+import FetchingError from "../../common/layout/FetchingError"
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,7 +32,7 @@ const DetailInfoWrapper = styled.div`
   @media ${Device.LAPTOP} {
     min-height: 470px;
   }
-`
+`;
 
 const ImgsWrapper = styled.div`
   position: absolute;
@@ -51,9 +52,10 @@ const PokemonImg = styled.img`
 
 export interface DetailPokemonInfoProps {
   pokemon: PokemonInterface;
+  fetchingError: any;
 }
 
-const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
+const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({pokemon,fetchingError}) => {
   const [isActive, setIsActive] = useState<string>(InfoType.BASE_STATS);
 
   return (
@@ -62,9 +64,15 @@ const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({ pokemon }) => {
         <PokemonImg src={pokemon.img} />
       </ImgsWrapper>
       <PokemonInfoNav isActive={isActive} setIsActive={setIsActive} />
-      <DetailInfoWrapper>
-      {isActive === InfoType.BASE_STATS ? <PokemonStats /> : <Evolutions />}
-      </DetailInfoWrapper>
+      {fetchingError ? (
+        <DetailInfoWrapper>
+          <FetchingError/>
+        </DetailInfoWrapper>
+      ) : (
+        <DetailInfoWrapper>
+          {isActive === InfoType.BASE_STATS ? <PokemonStats /> : <Evolutions />}
+        </DetailInfoWrapper>
+      )}
     </Wrapper>
   );
 };

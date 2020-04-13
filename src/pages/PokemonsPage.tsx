@@ -7,7 +7,6 @@ import PokemonList from "../pokemonList/components/PokemonList";
 import { Device } from "../enums/Device";
 import PokeballIcon from "../nav/PokeballIcon"
 import MainNav from "../nav/MainNav"
-import SpinningPokeball from "../common/layout/spinningPokeball"
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
   width: 100%;
   padding-left: 3px;
   padding-right: 3px;
-  overflow: hidden;
   @media ${Device.MOBILE_M} {
     padding-left: 20px;
     padding-right: 20px;
@@ -82,16 +80,14 @@ interface PokemonsPageProps {
   generation: string;
 }
 
-const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (
-  props
-) => {
+const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) => {
   const generation = props.match.params.generation;
   const [navActive, setNavActive] = useState<boolean>(false)
   
   return (
     <Wrapper>
       <PokeballIcon navActive={navActive} setNavActive={setNavActive}/>
-      <MainNav active={navActive}/>
+      <MainNav active={navActive} generation={generation}/>
       <Nav />
       <Title>
         {generation === "8" ? "All Pokemons" : `generation ${generation}`}

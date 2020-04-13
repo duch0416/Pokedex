@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { RouteComponentProps, NavLink } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 
 import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
 import { ColorMap, Types } from "../enums/Colors";
@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   @media ${Device.TABLET} {
     min-height: 100vh;
     justify-content: center;
@@ -54,12 +55,11 @@ interface SinglePokemonProps {
   name: string;
 }
 
-const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (
-  props
-) => {
+const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (props) => {
   const pokName = props.match.params.name;
-  const { pokemon, isLoading } = usePokemonData(pokName);
-
+  const { pokemon, isLoading, fetchingError } = usePokemonData(pokName);
+  
+ 
   return (
     <Wrapper>
       {isLoading ? (
@@ -70,7 +70,7 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (
             <Arrow src="/images/arrow.svg" />
             <BasicPokemonInfo pokemon={pokemon} />
           </TopSection>
-          <DetailPokemonInfo pokemon={pokemon} />
+          <DetailPokemonInfo pokemon={pokemon} fetchingError={fetchingError}/>
         </ColorWrapper>
       )}
     </Wrapper>
