@@ -6,14 +6,17 @@ import PokemonsPage from "../pages/PokemonsPage";
 import HomePage from "../pages/HomePage";
 import SinglePokemon from "../pages/SinglePokemon";
 
-
 const Routing: React.SFC = () => {
   return (
     <Router>
       <Switch>
         <Route
-          path={`${Paths.POKEMONS}/:generation/:name`}
+          path={`${Paths.POKEMONS}/:generation/:pageNum/:name`}
           component={SinglePokemon}
+        ></Route>
+        <Route
+          path={`${Paths.POKEMONS}/:generation/:pageNum`}
+          component={PokemonsPage}
         ></Route>
         <Route
           path={`${Paths.POKEMONS}/:generation`}

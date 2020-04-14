@@ -37,7 +37,7 @@ const GenerationBtn: React.SFC<GenerationBtnProps> = ({ gen, activegen, setActiv
       gen={gen}
       activegen={activegen}
       onClick={() => setActiveGen(gen)}
-      to={`${Paths.POKEMONS}/${gen}`}
+      to={`${Paths.POKEMONS}/${gen}/1`}
     >{`Gen ${gen}`}</GenBtn>
   );
 };

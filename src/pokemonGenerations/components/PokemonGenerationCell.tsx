@@ -116,7 +116,7 @@ const PokemonGenerationCell: React.SFC<PokemonGenerationCellProps> = ({
  
   return (
     <CellBgc>
-      <Wrapper  to={`${Paths.POKEMONS}/${genNum}`} > 
+      <Wrapper  to={`${Paths.POKEMONS}/${genNum}/1`} > 
         <Title>{title}</Title>
         <PokemonStartersWrapper>
           {startersImgs.map((pokeImg: string, index: number) => {

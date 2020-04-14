@@ -7,24 +7,23 @@ import { setLimitAndOffset } from "./setLimitAndOffset";
 import { getPokemonsPerPage } from "../actions/getPokemonsPerPage";
 
 
-export const usePokemonList = (generation: string) => {
+export const usePokemonList = (generation: string, pageNumber:string) => {
   const [pokemons, setPokemons] = useState<Array<any>>();
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(20);
   const [totalPokemons, setTotalPokemons] = useState(100);
   const filtredPhrase = useContext(filtersContext).phrase;
-  // console.log(filtredPhrase)
+  console.log(pageNumber)
 
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
+  const paginate = () => {
+      setCurrentPage(parseInt(pageNumber));
+    };
 
   const getPokemonList = async () => {
     const interval = setLimitAndOffset(generation);
     const data = await getPokemonArray(interval);
 
     setTotalPokemons(data.results.length);
-
     const poksPerPage = getPokemonsPerPage(data.results,currentPage,pokemonsPerPage);
 
     const poks = await Promise.all(
@@ -38,13 +37,18 @@ export const usePokemonList = (generation: string) => {
   };
 
   useEffect(() => {
+    if(pageNumber === "1"){
+      setCurrentPage(1)
+    }
+    paginate()
     getPokemonList();
-  }, [generation, currentPage, filtredPhrase]);
+  }, [generation, currentPage, filtredPhrase, pageNumber]);
 
   return {
     pokemons,
     totalPokemons,
     pokemonsPerPage,
+    currentPage,
     paginate,
   };
 };

@@ -78,10 +78,12 @@ const Nav = styled.div`
 
 interface PokemonsPageProps {
   generation: string;
+  pageNum: string;
 }
 
 const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) => {
   const generation = props.match.params.generation;
+  const pageNum = props.match.params.pageNum
   const [navActive, setNavActive] = useState<boolean>(false)
   
   return (
@@ -92,7 +94,7 @@ const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) 
       <Title>
         {generation === "8" ? "All Pokemons" : `generation ${generation}`}
       </Title>
-      <PokemonList generation={generation} />
+      <PokemonList generation={generation} pageNum={pageNum}/>
     </Wrapper>
   );
 };

@@ -1,6 +1,8 @@
 import * as React from "react";
-import { useEffect } from "react";
 import styled from "styled-components";
+import { useState} from "react";
+
+import PageNumEl from "./PageNumEl";
 
 const PaginationNav = styled.nav`
   margin-bottom: 25px;
@@ -11,38 +13,17 @@ const PageNumList = styled.ul`
   list-style: none;
   justify-content: center;
 `;
-const PageNumEl = styled.li`
-  margin-right: 5px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  width: 40px;
-  height: 40px;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-  border: 1px solid gray;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  overflow: hidden;
-  transition: ease 0.2s;
-  &:hover {
-      background-color: gray;
-  }
-`;
-const ColorDiv = styled.div<{white?:string}>`
-width: 100%;
-height: 50%;
-background-color: ${({white}) => white ? "white" : "red"};
-`
 
 export interface PaginationProps {
   totalPokemons: number | undefined;
   pokemonsPerPage: number;
   paginate(pageNum: number): void;
+  generation: string;
+  pageNum: string;
 }
 
-const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,paginate,}) => {
+const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,paginate,generation,pageNum}) => {
+  const [active, setActive] = useState(parseInt(pageNum));
   const pageNumbers = [];
 
   if (totalPokemons) {
@@ -51,14 +32,20 @@ const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,p
     }
   }
 
+
   return (
     <PaginationNav>
       <PageNumList>
         {pageNumbers.map((pageNum: number) => {
           return (
-            <PageNumEl key={pageNum} onClick={() => paginate(pageNum)}>
-              {pageNum}
-            </PageNumEl>
+            <PageNumEl
+              key={pageNum}
+              paginate={paginate}
+              pageNum={pageNum}
+              generation={generation}
+              setActive={setActive}
+              active={active}
+            />
           );
         })}
       </PageNumList>

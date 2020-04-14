@@ -100,15 +100,16 @@ const PokemonImage = styled.img`
 export interface PokemonItemProps {
   generation: string;
   pokemon: PokemonInterface;
+  currentPage: number;
 }
 
-const PokemonItem: React.SFC<PokemonItemProps> = ({ generation,pokemon}) => {
+const PokemonItem: React.SFC<PokemonItemProps> = ({ generation,pokemon, currentPage}) => {
 
   return (
     <CellBgc type={pokemon.types[0]}>
       <Wrapper
         type={pokemon.types[0]}
-        to={`${Paths.POKEMONS}/${generation}/${pokemon.name}`}
+        to={`${Paths.POKEMONS}/${generation}/${currentPage}/${pokemon.name}`}
       >
         <IdContainer>
           <PokemonId id={pokemon.id} />

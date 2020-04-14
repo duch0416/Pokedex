@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import PokemonItem from "./PokemonItem";
@@ -17,34 +17,36 @@ const PokemonWrapper = styled.div`
 
 export interface PokemonListProps {
   generation: string;
+  pageNum: string;
 }
 
-const PokemonList: React.SFC<PokemonListProps> = ({ generation }) => {
-  const { pokemons, totalPokemons, pokemonsPerPage, paginate } = usePokemonList(
-    generation
-  );
+const PokemonList: React.SFC<PokemonListProps> = ({ generation, pageNum }) => {
+  const {pokemons,totalPokemons,pokemonsPerPage,paginate,currentPage,} = usePokemonList(generation, pageNum);
 
 
   return (
     <>
-    <PokemonWrapper>
-      {pokemons &&
-        pokemons.map((pokemon: PokemonInterface) => {
-          return (
-            <PokemonItem
-              key={pokemon.id}
-              generation={generation}
-              pokemon={pokemon}
-            />
-          );
-        })}
-    </PokemonWrapper>
-    <Pagination
-    totalPokemons={totalPokemons}
-    pokemonsPerPage={pokemonsPerPage}
-    paginate={paginate}
-  />
-  </>
+      <PokemonWrapper>
+        {pokemons &&
+          pokemons.map((pokemon: PokemonInterface) => {
+            return (
+              <PokemonItem
+                key={pokemon.id}
+                generation={generation}
+                currentPage={currentPage}
+                pokemon={pokemon}
+              />
+            );
+          })}
+      </PokemonWrapper>
+      <Pagination
+        totalPokemons={totalPokemons}
+        pokemonsPerPage={pokemonsPerPage}
+        paginate={paginate}
+        generation={generation}
+        pageNum={pageNum}
+      />
+    </>
   );
 };
 

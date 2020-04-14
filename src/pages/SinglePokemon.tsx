@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     justify-content: center;
   }
 `;
-const ColorWrapper = styled.div<{ type: any }>`
+const ColorWrapper = styled.div<{ type: Types }>`
   background-color: ${({ type }) => ColorMap.get(type)};
   max-width: 1000px;
   @media ${Device.TABLET} {
