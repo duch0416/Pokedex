@@ -70,11 +70,9 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (props
 
   const { pokemon, isLoading, fetchingError,state } = usePokemonData(pokName);
 
-  
-
   return (
     <>
-      {pokemon.id && !fetchingError? (
+      {pokemon.id && pokName === pokemon.name ? (
         <Wrapper>
           {isLoading ? (<SpinningPokeball />) :
            (<>

@@ -19,7 +19,7 @@ export const usePokemonData = (pokemonName: string) => {
   });
 
   const getPok = async () => {
-    
+    setFetchingError("")
     setIsLoading(true);
     try {
       const pok = await getSinglePok(pokemonName);
