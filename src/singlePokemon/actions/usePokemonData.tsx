@@ -17,7 +17,7 @@ export const usePokemonData = (pokemonName: string) => {
     types: [],
     stats: [],
   });
-  console.log(pokemonName)
+
   const getPok = async () => {
     
     setIsLoading(true);
@@ -32,7 +32,6 @@ export const usePokemonData = (pokemonName: string) => {
     setIsLoading(false);
   };
 
-  console.log(pokemon)
   useEffect(() => {
     getPok();
   }, [pokemonName]);

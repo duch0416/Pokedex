@@ -50,7 +50,6 @@ const Evolutions: React.SFC = () => {
   const evolutionData = useContext(PokemonContext).evolutionData;
   const evolutionsNames = evolutionData.evolutionsNames;
   const evolutionsImgs = evolutionData.imgs;
-  console.log(evolutionData)
   
   return (
     <Wrapper>
