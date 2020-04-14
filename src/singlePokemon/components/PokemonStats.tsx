@@ -3,7 +3,7 @@ import {useContext} from 'react';
 import styled from "styled-components"
 
 import {PokemonContext} from "../../store/store"
-import StatBar from "./StatBar"
+import StatsBar from "./StatsBar"
 import {Device} from "../../enums/Device"
 
 const Wrapper = styled.div`
@@ -54,9 +54,9 @@ const PokemonStats: React.SFC =  () => {
             <StatsColumn>
                 {stats.map((item:any) => {
                     if(item.stat.name === "attack" || item.stat.name === "speed" || item.stat.name === "hp"){
-                        return <StatBar key={item.stat.name} red="red" baseStat={item.base_stat}/>
+                        return <StatsBar key={item.stat.name} red="red" baseStat={item.base_stat}/>
                     }else{
-                    return <StatBar key={item.stat.name} baseStat={item.base_stat}/>
+                    return <StatsBar key={item.stat.name} baseStat={item.base_stat}/>
                     }
                 })}
             </StatsColumn>

@@ -29,6 +29,7 @@ interface StatBarProps {
  
 const StatBar: React.SFC<StatBarProps> = ({baseStat, red}) => {
     const percentage = (baseStat / 200) * 100
+
     return ( 
         <Wrapper>
             <StatPercentage percentage={percentage} red={red}/>
