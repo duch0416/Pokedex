@@ -89,7 +89,6 @@ const PokemonImg = styled.img<{ index: number; title: string}>`
 const Title = styled.h2`
   color: #303943;
   font-size: 13px;
-  font-family: "Pokemon";
   letter-spacing: 2px;
   text-align: center;
   line-height: 1.2;

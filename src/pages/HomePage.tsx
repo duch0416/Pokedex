@@ -55,7 +55,6 @@ const Wrapper = styled.div`
 const Title = styled.h2`
   color: #303943;
   font-size: 40px;
-  font-family: "Pokemon";
   letter-spacing: 4px;
   width: 100%;
   text-align: center;

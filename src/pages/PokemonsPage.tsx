@@ -49,7 +49,6 @@ const Title = styled.h1`
   font-size: 30px;
   margin-bottom: 20px;
   margin-left: 15px;
-  font-family: "Pokemon";
   letter-spacing: 3px;
   @media ${Device.TABLET} {
     font-size: 40px;
