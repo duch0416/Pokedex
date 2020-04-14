@@ -54,6 +54,9 @@ const TopSection = styled.div`
 const Arrow = styled.img`
   width: 22px;
   transform: rotate(180deg);
+  @media ${Device.TABLET}{
+    width: 40px;
+  }
 `;
 
 
