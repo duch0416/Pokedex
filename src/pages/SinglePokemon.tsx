@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, NavLink } from "react-router-dom";
 
 import { usePokemonData } from "../singlePokemon/actions/usePokemonData";
 import { ColorMap, Types } from "../enums/Colors";
@@ -8,6 +8,11 @@ import BasicPokemonInfo from "../singlePokemon/components/BasicPokemonInfo";
 import DetailPokemonInfo from "../singlePokemon/components/DetailPokemonInfo";
 import SpinningPokeball from "../common/layout/spinningPokeball";
 import { Device } from "../enums/Device";
+import FetchingError from "../common/layout/ErrorMsg"
+import {ErrorMsgs} from "../enums/ErrorMsgs"
+import Navigation from "../navigation/Navigation"
+import {Paths} from "../enums/Paths"
+
 
 const Wrapper = styled.div`
   position: relative;
@@ -46,34 +51,47 @@ const TopSection = styled.div`
     margin-right: auto;
   }
 `;
+
 const Arrow = styled.img`
   width: 22px;
   transform: rotate(180deg);
 `;
 
+
 interface SinglePokemonProps {
   name: string;
+  generation: string;
+  pageNum: string;
 }
 
 const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (props) => {
   const pokName = props.match.params.name;
+  const generation = props.match.params.generation;
+  const pageNum = props.match.params.pageNum;
   const { pokemon, isLoading, fetchingError } = usePokemonData(pokName);
-  
- 
+
   return (
-    <Wrapper>
-      {isLoading ? (
-        <SpinningPokeball />
-      ) : (
-        <ColorWrapper type={pokemon.types[0]}>
-          <TopSection>
-            <Arrow src="/images/arrow.svg" />
-            <BasicPokemonInfo pokemon={pokemon} />
-          </TopSection>
-          <DetailPokemonInfo pokemon={pokemon} fetchingError={fetchingError}/>
-        </ColorWrapper>
-      )}
-    </Wrapper>
+    <>
+      {pokemon.id ? (
+        <Wrapper>
+          {isLoading ? (<SpinningPokeball />) :
+           (<>
+            <Navigation generation={generation}/>
+            <ColorWrapper type={pokemon.types[0]}>
+              <TopSection>
+                <NavLink to={`${Paths.POKEMONS}/${generation}/${pageNum}`}>
+                  <Arrow src="/images/arrow.svg" />
+                </NavLink>
+                <BasicPokemonInfo pokemon={pokemon} />
+              </TopSection>
+              <DetailPokemonInfo
+                pokemon={pokemon}
+                fetchingError={fetchingError}
+              />
+            </ColorWrapper>
+            </>)}
+        </Wrapper>) : (<FetchingError msg={ErrorMsgs.INVALID_POKEMON_NAME} big="big"/>)}
+    </>
   );
 };
 

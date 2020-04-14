@@ -1,9 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{big?: string}>`
     width: 100%;
-    height: 100%;
+    height: ${({big}) => big ? "100vh" : "100%"};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,17 +13,22 @@ const Wrapper = styled.div`
 const PikachuImg = styled.img`
   width: 160px;
 `;
-const ErrorMsg = styled.h2`
+const ErrorTxt = styled.h2`
   font-size: 30px;
 `;
 
-const FetchingErr: React.SFC = () => {
+interface ErrorMsgInterface {
+  msg: string;
+  big?: string;
+}
+
+const ErrorMsg: React.SFC<ErrorMsgInterface> = ({msg, big}) => {
   return (
-    <Wrapper>
-      <ErrorMsg>Error</ErrorMsg>
+    <Wrapper big={big}>
+      <ErrorTxt>{msg}</ErrorTxt>
       <PikachuImg src="/images/pikachu-error.png" />
     </Wrapper>
   );
 };
 
-export default FetchingErr;
+export default ErrorMsg;

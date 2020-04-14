@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { Paths } from "../navigation/Paths";
+import { Paths } from "../enums/Paths";
 
 const GenBtn = styled(NavLink)<{ gen: string, activegen?: string }>`
   display: flex;
@@ -24,7 +24,7 @@ const GenBtn = styled(NavLink)<{ gen: string, activegen?: string }>`
   }
 `;
 
-export interface GenerationBtnProps {
+interface GenerationBtnProps {
   gen: string;
   setActiveGen: (value: string) => void;
   activegen: string;

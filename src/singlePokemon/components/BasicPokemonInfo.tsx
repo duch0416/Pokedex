@@ -22,7 +22,7 @@ const TypesContainer = styled.div`
   display: flex;
 `;
 
-export interface BasicPokemonInfoProps {
+interface BasicPokemonInfoProps {
   pokemon: PokemonInterface;
 }
 

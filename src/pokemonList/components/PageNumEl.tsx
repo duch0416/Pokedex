@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {useEffect} from "react";
 import styled from "styled-components"
 import {  NavLink } from "react-router-dom";
 
-import {Paths} from "../../navigation/Paths"
+import {Paths} from "../../enums/Paths"
 
 const PageNumButton = styled(NavLink)<{pageNum: number, active:number}>`
   margin-right: 5px;
@@ -29,22 +28,18 @@ const PageNumButton = styled(NavLink)<{pageNum: number, active:number}>`
 `;
 
 
-export interface PageNumElProps {
+interface PageNumElProps {
     pageNum: number;
-    paginate: any;
     generation: string;
     setActive: (pageNum: number) => void;
     active: number;
 }
 
-const PageNumEl: React.SFC<PageNumElProps> = ({pageNum, paginate, generation, setActive, active}) => {
-    
+const PageNumEl: React.SFC<PageNumElProps> = ({pageNum ,generation, setActive, active}) => {
     const handleClick = () => {
         setActive(pageNum)
     }
-    // useEffect(() => {
-    //     setActive(1)
-    // },[generation])
+
     
     return ( 
         <PageNumButton pageNum={pageNum} active={active} onClick={handleClick}  to={`${Paths.POKEMONS}/${generation}/${pageNum}`}>

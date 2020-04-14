@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import { ColorMap, Colors, Types } from "../../enums/Colors";
 import { Device } from "../../enums/Device";
-import { Paths } from "../../navigation/Paths";
+import { Paths } from "../../enums/Paths";
 import PokemonType from "./PokemonType";
 import PokemonId from "../../common/layout/PokemonId";
 import PokemonName from "../../common/layout/PokemonName";
@@ -97,7 +97,7 @@ const PokemonImage = styled.img`
   }
 `;
 
-export interface PokemonItemProps {
+interface PokemonItemProps {
   generation: string;
   pokemon: PokemonInterface;
   currentPage: number;

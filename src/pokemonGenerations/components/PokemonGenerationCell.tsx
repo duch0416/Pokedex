@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PokeballImg from "../../common/layout/PokeballImg";
 import { useStartersImgs } from "../actions/useStartersImgs";
 import {  NavLink } from "react-router-dom";
-import {Paths} from "../../navigation/Paths"
+import {Paths} from "../../enums/Paths"
 import CellBgc from "../../common/layout/CellBgc";
 import {Device} from "../../enums/Device"
 

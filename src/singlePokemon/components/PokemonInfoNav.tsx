@@ -28,7 +28,7 @@ const PokeInfoEl = styled.li<{ id: any; isActive: string }>`
   }
 `;
 
-export interface PokemonInfoNavProps {
+interface PokemonInfoNavProps {
   isActive: string;
   setIsActive: (value: string) => void;
 }

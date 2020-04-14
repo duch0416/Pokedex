@@ -1,9 +1,8 @@
 import * as React from "react";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-import { initialFiltersState, FiltersReducer } from "../store/FilersReducer";
-import { setFilterData } from "../store/Actions";
+import { NavLink, useLocation } from "react-router-dom";
 
 const FilterByNamseScetion = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const FilterByName = styled.input`
   border-radius: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 `;
-const Btn = styled.button`
+const Btn = styled(NavLink)`
   outline: none;
   text-align: center;
   background-color: #fff;
@@ -33,16 +32,13 @@ const Btn = styled.button`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 `;
 
+
 const Filters: React.SFC = () => {
-  const [state, dispatch] = useReducer(FiltersReducer, initialFiltersState);
   const [phrase, setPhrase] = useState("");
+  const location = useLocation();
 
   const handleTyping = (e: any) => {
     setPhrase(e.target.value);
-  };
-  const handleSumbit = () => {
-    dispatch(setFilterData(phrase));
-    setPhrase("");
   };
 
   return (
@@ -50,7 +46,7 @@ const Filters: React.SFC = () => {
       <FilterByNamseScetion>
         <FilterByName placeholder="pokemon name" onChange={handleTyping} />
       </FilterByNamseScetion>
-      <Btn onClick={handleSumbit}>
+      <Btn to={`${location.pathname}/${phrase.toLowerCase()}`}>
         <img src="/images/send.svg" alt="" />
       </Btn>
     </>

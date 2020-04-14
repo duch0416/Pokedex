@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import PokemonItem from "./PokemonItem";
@@ -15,14 +14,13 @@ const PokemonWrapper = styled.div`
   justify-content: space-around;
 `;
 
-export interface PokemonListProps {
+interface PokemonListProps {
   generation: string;
   pageNum: string;
 }
 
 const PokemonList: React.SFC<PokemonListProps> = ({ generation, pageNum }) => {
-  const {pokemons,totalPokemons,pokemonsPerPage,paginate,currentPage,} = usePokemonList(generation, pageNum);
-
+  const {pokemons,totalPokemons,pokemonsPerPage, currentPage,} = usePokemonList(generation, pageNum);
 
   return (
     <>
@@ -42,7 +40,6 @@ const PokemonList: React.SFC<PokemonListProps> = ({ generation, pageNum }) => {
       <Pagination
         totalPokemons={totalPokemons}
         pokemonsPerPage={pokemonsPerPage}
-        paginate={paginate}
         generation={generation}
         pageNum={pageNum}
       />

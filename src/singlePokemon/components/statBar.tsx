@@ -22,7 +22,7 @@ const StatPercentage = styled.div<{percentage: number, red?: string}>`
         height: 6px;
     }
 `
-export interface StatBarProps {
+interface StatBarProps {
     baseStat:number;
     red?: string;
 }

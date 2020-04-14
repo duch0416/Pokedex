@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useEffect} from "react";
 import styled from "styled-components";
 import { useState} from "react";
 
@@ -14,16 +15,15 @@ const PageNumList = styled.ul`
   justify-content: center;
 `;
 
-export interface PaginationProps {
+interface PaginationProps {
   totalPokemons: number | undefined;
   pokemonsPerPage: number;
-  paginate(pageNum: number): void;
   generation: string;
   pageNum: string;
 }
 
-const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,paginate,generation,pageNum}) => {
-  const [active, setActive] = useState(parseInt(pageNum));
+const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,generation,pageNum}) => {
+  const [active, setActive] = useState(1);
   const pageNumbers = [];
 
   if (totalPokemons) {
@@ -32,6 +32,9 @@ const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,p
     }
   }
 
+  useEffect(() => {
+    setActive(parseInt(pageNum))
+},[generation])
 
   return (
     <PaginationNav>
@@ -40,7 +43,6 @@ const Pagination: React.SFC<PaginationProps> = ({totalPokemons,pokemonsPerPage,p
           return (
             <PageNumEl
               key={pageNum}
-              paginate={paginate}
               pageNum={pageNum}
               generation={generation}
               setActive={setActive}

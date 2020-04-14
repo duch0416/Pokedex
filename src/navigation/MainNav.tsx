@@ -7,7 +7,7 @@ import Filters from "./Filters";
 import {startersArray} from "../pokemonGenerations/components/StartersArrray"
 import {Device} from "../enums/Device"
 import GenerationBtn from "./GenerationBtn"
-import { Paths } from "../navigation/Paths";
+import { Paths } from "../enums/Paths";
 
 const Wrapper = styled.div<{ active: boolean }>`
   display: flex;
@@ -39,6 +39,9 @@ const GoToHomePage = styled(NavLink)`
   border-radius: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  &:hover{
+    transform: scale(1.1)
+  }
 `;
 
 
@@ -47,9 +50,10 @@ interface MainNavProps {
   generation: string;
 }
 
-const MainNav: React.SFC<MainNavProps> = ({ active, generation }) => {
+const MainNav: React.SFC<MainNavProps> = ({ active, generation })=> {
   const [activegen, setActiveGen] = useState<string>(generation);
-
+  
+  
   return (
     <Wrapper active={active}>
       <GoToHomePage to={`${Paths.HOME}`}>Home Page</GoToHomePage>

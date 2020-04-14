@@ -45,7 +45,7 @@ const PokemonName = styled.p`
     height: 10%;
 `
 
-export interface EvolutionFragmentProps {
+interface EvolutionFragmentProps {
   beforeEvolutionImg: string;
   afterEvolutionImg: string;
   beforeEvolutionName: string;

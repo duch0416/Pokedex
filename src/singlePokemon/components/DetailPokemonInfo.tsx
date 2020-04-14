@@ -8,7 +8,8 @@ import Evolutions from "./Evolutions";
 import { InfoType } from "../../enums/InfoType";
 import { Device } from "../../enums/Device";
 import { PokemonInterface } from "../../types/Types";
-import FetchingError from "../../common/layout/FetchingError"
+import FetchingError from "../../common/layout/ErrorMsg"
+import {ErrorMsgs} from "../../enums/ErrorMsgs"
 
 const Wrapper = styled.div`
   position: relative;
@@ -50,7 +51,7 @@ const PokemonImg = styled.img`
   transform: translateX(-50%);
 `;
 
-export interface DetailPokemonInfoProps {
+interface DetailPokemonInfoProps {
   pokemon: PokemonInterface;
   fetchingError: any;
 }
@@ -66,7 +67,7 @@ const DetailPokemonInfo: React.SFC<DetailPokemonInfoProps> = ({pokemon,fetchingE
       <PokemonInfoNav isActive={isActive} setIsActive={setIsActive} />
       {fetchingError ? (
         <DetailInfoWrapper>
-          <FetchingError/>
+          <FetchingError msg={ErrorMsgs.API_PROBLEM}/>
         </DetailInfoWrapper>
       ) : (
         <DetailInfoWrapper>

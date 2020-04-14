@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Paths } from "./Paths";
+import { Paths } from "../enums/Paths";
 import PokemonsPage from "../pages/PokemonsPage";
 import HomePage from "../pages/HomePage";
 import SinglePokemon from "../pages/SinglePokemon";

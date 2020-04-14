@@ -21,7 +21,7 @@ const Typetxt = styled.p`
    }
 `
 
-export interface PokemonTypeBigProps {
+interface PokemonTypeBigProps {
     type: Types;
 }
  

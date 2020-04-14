@@ -1,12 +1,11 @@
 import * as React from "react";
-import {useState} from "react"
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router-dom";
 
 import PokemonList from "../pokemonList/components/PokemonList";
 import { Device } from "../enums/Device";
-import PokeballIcon from "../nav/PokeballIcon"
-import MainNav from "../nav/MainNav"
+import Navigation from "../navigation/Navigation";
+
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -70,11 +69,10 @@ const Title = styled.h1`
     margin-right: auto;
   }
 `;
-const Nav = styled.div`
+const Div = styled.div`
   width: 100%;
   height: 15%;
 `;
-
 
 interface PokemonsPageProps {
   generation: string;
@@ -83,18 +81,16 @@ interface PokemonsPageProps {
 
 const PokemonsPage: React.SFC<RouteComponentProps<PokemonsPageProps>> = (props) => {
   const generation = props.match.params.generation;
-  const pageNum = props.match.params.pageNum
-  const [navActive, setNavActive] = useState<boolean>(false)
-  
+  const pageNum = props.match.params.pageNum;
+
   return (
     <Wrapper>
-      <PokeballIcon navActive={navActive} setNavActive={setNavActive}/>
-      <MainNav active={navActive} generation={generation}/>
-      <Nav />
+      <Navigation generation={generation}/>
+      <Div />
       <Title>
         {generation === "8" ? "All Pokemons" : `generation ${generation}`}
       </Title>
-      <PokemonList generation={generation} pageNum={pageNum}/>
+      <PokemonList generation={generation} pageNum={pageNum} />
     </Wrapper>
   );
 };

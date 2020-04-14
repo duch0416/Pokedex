@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect} from "react";
 
-import { filtersContext } from "../../store/store";
 import { getPokemonArray } from "../../api/actions/getPokemonData";
 import { getSinglePok } from "../../common/actions/getSinglePok";
 import { setLimitAndOffset } from "./setLimitAndOffset";
@@ -12,12 +11,10 @@ export const usePokemonList = (generation: string, pageNumber:string) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(20);
   const [totalPokemons, setTotalPokemons] = useState(100);
-  const filtredPhrase = useContext(filtersContext).phrase;
-  console.log(pageNumber)
 
   const paginate = () => {
       setCurrentPage(parseInt(pageNumber));
-    };
+  };
 
   const getPokemonList = async () => {
     const interval = setLimitAndOffset(generation);
@@ -42,7 +39,7 @@ export const usePokemonList = (generation: string, pageNumber:string) => {
     }
     paginate()
     getPokemonList();
-  }, [generation, currentPage, filtredPhrase, pageNumber]);
+  }, [generation, currentPage, pageNumber]);
 
   return {
     pokemons,
