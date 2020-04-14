@@ -30,12 +30,17 @@ const Btn = styled(NavLink)`
   border: none;
   border-radius: 30px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: ease 0.1s;
+  &:hover{
+    transform: scale(1.1)
+  }
 `;
 
 
 const Filters: React.SFC = () => {
   const [phrase, setPhrase] = useState("");
   const location = useLocation();
+  let path = location.pathname.length > 13 ? location.pathname.split("").splice(0,13).join("") : location.pathname;
 
   const handleTyping = (e: any) => {
     setPhrase(e.target.value);
@@ -46,7 +51,7 @@ const Filters: React.SFC = () => {
       <FilterByNamseScetion>
         <FilterByName placeholder="pokemon name" onChange={handleTyping} />
       </FilterByNamseScetion>
-      <Btn to={`${location.pathname}/${phrase.toLowerCase()}`}>
+      <Btn to={`${path}/${phrase.toLowerCase()}`}>
         <img src="/images/send.svg" alt="" />
       </Btn>
     </>

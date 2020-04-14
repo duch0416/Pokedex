@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { useContext } from "react";
 
-import { pokemonContext } from "../../store/store";
+import { PokemonContext } from "../../store/store";
 import EvolutionFragment from "./EvolutionFragment";
 import { Device } from "../../enums/Device";
 import PokeballImg from "../../common/layout/PokeballImg";
@@ -47,10 +47,11 @@ const NoEvolutionsImg = styled.img`
 
 
 const Evolutions: React.SFC = () => {
-  const evolutionData = useContext(pokemonContext).evolutionData;
+  const evolutionData = useContext(PokemonContext).evolutionData;
   const evolutionsNames = evolutionData.evolutionsNames;
   const evolutionsImgs = evolutionData.imgs;
-
+  console.log(evolutionData)
+  
   return (
     <Wrapper>
       {evolutionsImgs[1] && <Title>Evulution Chain</Title>}

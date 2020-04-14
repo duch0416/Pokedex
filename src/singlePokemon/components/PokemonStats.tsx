@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useContext} from 'react';
 import styled from "styled-components"
 
-import {pokemonContext} from "../../store/store"
+import {PokemonContext} from "../../store/store"
 import StatBar from "./StatBar"
 import {Device} from "../../enums/Device"
 
@@ -32,7 +32,7 @@ const PokeStat = styled.p<{name?: string}>`
 
  
 const PokemonStats: React.SFC =  () => {
-    const stats = useContext(pokemonContext).stats
+    const stats = useContext(PokemonContext).stats
    
     return ( 
         <Wrapper>

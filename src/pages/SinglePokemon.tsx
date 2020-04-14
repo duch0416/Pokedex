@@ -12,8 +12,7 @@ import FetchingError from "../common/layout/ErrorMsg"
 import {ErrorMsgs} from "../enums/ErrorMsgs"
 import Navigation from "../navigation/Navigation"
 import {Paths} from "../enums/Paths"
-
-
+import {PokemonContext} from "../store/store"
 const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -68,11 +67,14 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (props
   const pokName = props.match.params.name;
   const generation = props.match.params.generation;
   const pageNum = props.match.params.pageNum;
-  const { pokemon, isLoading, fetchingError } = usePokemonData(pokName);
+
+  const { pokemon, isLoading, fetchingError,state } = usePokemonData(pokName);
+
+  
 
   return (
     <>
-      {pokemon.id ? (
+      {pokemon.id && !fetchingError? (
         <Wrapper>
           {isLoading ? (<SpinningPokeball />) :
            (<>
@@ -84,13 +86,15 @@ const SinglePokemon: React.SFC<RouteComponentProps<SinglePokemonProps>> = (props
                 </NavLink>
                 <BasicPokemonInfo pokemon={pokemon} />
               </TopSection>
-              <DetailPokemonInfo
-                pokemon={pokemon}
-                fetchingError={fetchingError}
-              />
-            </ColorWrapper>
+              <PokemonContext.Provider  value={state}>
+                <DetailPokemonInfo
+                  pokemon={pokemon}
+                  fetchingError={fetchingError}
+                />
+                </PokemonContext.Provider>
+              </ColorWrapper>
             </>)}
-        </Wrapper>) : (<FetchingError msg={ErrorMsgs.INVALID_POKEMON_NAME} big="big"/>)}
+        </Wrapper>) : (<><Navigation generation={generation}/><FetchingError msg={ErrorMsgs.INVALID_POKEMON_NAME} big="big"/></>)}
     </>
   );
 };
